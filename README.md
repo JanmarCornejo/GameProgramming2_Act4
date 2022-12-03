@@ -1,6 +1,11 @@
 GAME PROGRAMMING 2 ACTIVITY 4
 --------------------------------------
 
+Geoffrey Mendoza
+
+Janmar Cornejo
+
+
 Implementing OOP Systems
 
 3rd person shooter (Preferably Top Down 2D)
