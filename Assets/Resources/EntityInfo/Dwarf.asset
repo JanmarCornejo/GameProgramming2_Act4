@@ -27,5 +27,5 @@ MonoBehaviour:
     Type: 1
     Damage: 0
     Range: 0
-    Cooldown: 0
-    ProjectilePrefab: {fileID: 0}
+    Cooldown: 1
+    ProjectileInfo: {fileID: 11400000, guid: d0540cb9c2eab6e439378d26561b3dfd, type: 2}

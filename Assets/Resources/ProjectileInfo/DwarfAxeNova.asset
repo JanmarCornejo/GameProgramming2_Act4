@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 180486e3c01327341abb5800fa7e0127, type: 3}
-  m_Name: DwarfAutoProjectile
+  m_Name: DwarfAxeNova
   m_EditorClassIdentifier: 
-  Name: Dwarf
-  Type: 1
+  Name: Axe Nova
+  Type: 4
   Prefab: {fileID: 4731425703246554527, guid: d984ad9f8258bc6498e342265af85af9, type: 3}
   MoveSpeed: 14

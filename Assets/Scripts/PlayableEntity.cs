@@ -33,6 +33,11 @@ public class PlayableEntity : Entity
         float xAxis = Input.GetAxisRaw("Horizontal");
         float yAxis = Input.GetAxisRaw("Vertical");
         _faceDirection = new Vector2(xAxis, yAxis);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CastSkill(Skills[0].Type);
+        }
         
         _rigidbody.velocity = _faceDirection * _moveSpeed;
         FlipSprite();
@@ -43,7 +48,7 @@ public class PlayableEntity : Entity
         var dirToFace = _faceDirection.x >= 0 ? 1 : -1;
         _spriteRenderer.flipX = dirToFace == -1;
 
-        //TODO fixed direction indicator 
+        //TODO fix direction indicator 
         
         // if (_spriteRenderer.flipX && _faceDirection == Vector2.zero)
         // {

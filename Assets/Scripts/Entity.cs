@@ -38,6 +38,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     public float AttackRate { get; protected set;}
     private float _nextAttackTime;
     public Skill ActiveSkill { get; protected set; }
+    private float _nextActiveSkillTime;
     public Skill[] Skills { get; protected set; }
 
     private TargetIndicator _indicator;
@@ -47,28 +48,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     protected SpriteRenderer _spriteRenderer;
     [SerializeField] protected float _moveSpeed;
     [SerializeField] protected Vector2 _faceDirection;
-
-    
-    public virtual void AutoAttack()
-    {
-        switch (Type)
-        {
-            case EntityType.Dwarf:
-            case EntityType.Wizard:
-            case EntityType.Monk:
-                //TODO auto attack logic with directions
-                if (Time.time > _nextAttackTime)
-                {
-                    // Debug.Log("Auto Attack");
-                    var tr = _indicator.OffsetTransform.transform;
-                    var projectile = Instantiate(_basicProjectile.Prefab, tr.position,
-                        _indicator.transform.rotation);
-                    projectile.InitializeProjectile(_basicProjectile, _faceDirection);
-                    _nextAttackTime = Time.time + 1 / AttackRate;
-                }
-                break;
-        }
-    }
 
     public virtual void Apply(ApplyType type, IHealthDamageHandler agent)
     {
@@ -103,10 +82,37 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 break;
         }
     }
+    
+    public virtual void AutoAttack()
+    {
+        switch (Type)
+        {
+            case EntityType.Dwarf:
+            case EntityType.Wizard:
+            case EntityType.Monk:
+                //TODO auto attack logic with directions
+                if (Time.time > _nextAttackTime)
+                {
+                    // Debug.Log("Auto Attack");
+                    var tr = _indicator.OffsetTransform.transform;
+                    var projectile = Instantiate(_basicProjectile.Prefab, tr.position,
+                        _indicator.transform.rotation);
+                    projectile.InitializeProjectile(_basicProjectile, _faceDirection);
+                    _nextAttackTime = Time.time + 1 / AttackRate;
+                }
+                break;
+        }
+    }
 
     public virtual void CastSkill(SkillType type)
     {
         ActiveSkill = Skills.FirstOrDefault(s => s.Type == type);
+        if (ActiveSkill == null)
+            return;
+
+        if (Time.time <= _nextActiveSkillTime) 
+            return;
+
         //TODO logic of the skills
         //Dwarf - AxeNova
         //Wizard - Teleport or Laser
@@ -114,12 +120,17 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         switch (type)
         {
             case SkillType.AxeNova:
+                var axeNova = Instantiate(ActiveSkill.ProjectileInfo.Prefab, 
+                    transform.position, Quaternion.identity);
+                axeNova.InitializeProjectile(ActiveSkill.ProjectileInfo, Vector2.one);
                 break;
             case SkillType.Teleport:
                 break;
             case SkillType.MultiShot:
                 break;
         }
+
+        _nextActiveSkillTime = Time.time + ActiveSkill.Cooldown;
     }
 
     protected virtual  void Awake()

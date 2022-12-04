@@ -10,7 +10,7 @@ public class Skill
     public int Damage;
     public float Range;
     public int Cooldown;
-    public Projectile ProjectilePrefab;
+    public ProjectileInfo ProjectileInfo;
     //TODO vfx, sounds, etc
 }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class ProjectileInfo : ScriptableObject
 {
     public string Name;
+    public ProjectileType Type;
     public Projectile Prefab;
     public float MoveSpeed;
 
