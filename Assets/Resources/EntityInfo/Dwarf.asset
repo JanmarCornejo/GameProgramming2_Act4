@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a528dffd303742c996d87c73cfbd51ca, type: 3}
+  m_Name: Dwarf
+  m_EditorClassIdentifier: 
+  Name: Dwarf
+  Prefab: {fileID: 2850923232702045231, guid: a590d14a3ff5ab64bb3c4c9898d5468a, type: 3}
+  Sprite: {fileID: 21300000, guid: b8d53ddc2a1bbd849b812257364f805f, type: 3}
+  Type: 1
+  MaxHealth: 100
+  AttackDamage: 5
+  AttackRange: 0
+  AttackRate: 0
+  Skills:
+  - Name: Dagger Nova
+    Type: 1
+    Damage: 0
+    Range: 0
+    Cooldown: 0
