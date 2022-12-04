@@ -27,16 +27,13 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public EntityInfo GetEntityInfo(EntityType type) => _entityData[type];
-    
+    public EntityInfo GetEntityInfo(EntityType type)
+    {
+       return _entityData[type];
+    }
+
     private void OnDestroy()
     {
         Instance = null;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 }

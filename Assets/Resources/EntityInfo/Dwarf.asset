@@ -17,12 +17,15 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: b8d53ddc2a1bbd849b812257364f805f, type: 3}
   Type: 1
   MaxHealth: 100
+  MoveSpeed: 8
   AttackDamage: 5
-  AttackRange: 0
-  AttackRate: 0
+  AttackRange: 2
+  AttackRate: 1
+  BasicProjectileInfo: {fileID: 11400000, guid: 2e77fdbdb97b0e64dafd2b6ad0710301, type: 2}
   Skills:
   - Name: Dagger Nova
     Type: 1
     Damage: 0
     Range: 0
     Cooldown: 0
+    ProjectilePrefab: {fileID: 0}
