@@ -66,6 +66,9 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+
+    //Checks if the round is completed and will run GameComplete Script
+
     void NewRound()
     {
         Debug.Log("Wave Complete");
@@ -83,6 +86,8 @@ public class WaveSpawner : MonoBehaviour
         nextWave++;
     }
 
+    //Checks if there are still enemies alive
+
     bool EnemyAlive()
     {
         searchCount -= Time.deltaTime;
@@ -96,6 +101,9 @@ public class WaveSpawner : MonoBehaviour
         }
         return true;
     }
+
+
+    //Spawns Enemy Wave
 
     IEnumerator SpawnWave(Wave _wave)
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
     [SerializeField] float speed;
     [SerializeField] float stopDis;
@@ -19,16 +19,14 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] int health = 100;
 
-    
-
-    private void Start()
+    protected override void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         timeShoot = startShoot;
     }
 
-    private void Update()
+    protected override void UpdateEntity()
     {
         if (player != null)
         {
@@ -47,7 +45,6 @@ public class Enemy : MonoBehaviour
         }
         
     }
-
 
     //Will try to find player position and seek player
 
