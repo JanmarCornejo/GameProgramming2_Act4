@@ -9,7 +9,7 @@ public class Skill
     public SkillType Type;
     public int Damage;
     public float Range;
-    public int Cooldown;
+    public float Cooldown;
     public ProjectileInfo ProjectileInfo;
     //TODO vfx, sounds, etc
 }

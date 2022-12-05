@@ -137,7 +137,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
-
     }
 
     protected virtual void Start()
@@ -168,6 +167,4 @@ public enum EntityType
     //Enemy
     Slime = 100,
     AbyssMage,
-    
-    
 }

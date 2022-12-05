@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Axe Nova
   Type: 4
-  Prefab: {fileID: 4731425703246554527, guid: d984ad9f8258bc6498e342265af85af9, type: 3}
+  Prefab: {fileID: 3017550139387971945, guid: 0ac963568c5e1b444a03f5e13997c889, type: 3}
   MoveSpeed: 14
