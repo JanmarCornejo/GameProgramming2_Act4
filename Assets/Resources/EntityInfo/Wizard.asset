@@ -26,6 +26,6 @@ MonoBehaviour:
   - Name: Teleport
     Type: 2
     Damage: 0
-    Range: 0
-    Cooldown: 1.5
+    Range: 5
+    Cooldown: 2
     ProjectileInfo: {fileID: 11400000, guid: d0540cb9c2eab6e439378d26561b3dfd, type: 2}

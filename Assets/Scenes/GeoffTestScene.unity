@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 3
-  _btn: {fileID: 274694370}
+  _btn: {fileID: 265927517}
   _parent: {fileID: 79839267}
 --- !u!1 &265927515
 GameObject:
@@ -456,7 +456,6 @@ GameObject:
   - component: {fileID: 274694372}
   - component: {fileID: 274694371}
   - component: {fileID: 274694370}
-  - component: {fileID: 274694373}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -567,21 +566,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274694368}
   m_CullTransparentMesh: 1
---- !u!114 &274694373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274694368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e212620ca1ef5694e9d87d608b739c2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 1
-  _btn: {fileID: 274694370}
-  _parent: {fileID: 79839267}
 --- !u!1 &277209542
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
-  _btn: {fileID: 274694370}
+  _btn: {fileID: 1654105318}
   _parent: {fileID: 79839267}
 --- !u!1 &920043919
 GameObject:
@@ -1272,6 +1256,7 @@ GameObject:
   - component: {fileID: 1336981132}
   - component: {fileID: 1336981134}
   - component: {fileID: 1336981133}
+  - component: {fileID: 1336981135}
   m_Layer: 5
   m_Name: Dwarf
   m_TagString: Untagged
@@ -1338,6 +1323,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336981131}
   m_CullTransparentMesh: 1
+--- !u!114 &1336981135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336981131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e212620ca1ef5694e9d87d608b739c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1
+  _btn: {fileID: 274694370}
+  _parent: {fileID: 79839267}
 --- !u!1 &1364232144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,7 +1578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1933409930
 SpriteRenderer:
   m_ObjectHideFlags: 0

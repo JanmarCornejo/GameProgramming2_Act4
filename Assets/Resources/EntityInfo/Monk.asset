@@ -25,7 +25,7 @@ MonoBehaviour:
   Skills:
   - Name: Multi Shot
     Type: 3
-    Damage: 0
-    Range: 0
-    Cooldown: 1
-    ProjectileInfo: {fileID: 11400000, guid: d0540cb9c2eab6e439378d26561b3dfd, type: 2}
+    Damage: 1
+    Range: 4
+    Cooldown: 4
+    ProjectileInfo: {fileID: 11400000, guid: f18559374c1002a4cbd399308b64933c, type: 2}

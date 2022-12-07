@@ -25,7 +25,7 @@ MonoBehaviour:
   Skills:
   - Name: Dagger Nova
     Type: 1
-    Damage: 0
+    Damage: 1
     Range: 0
-    Cooldown: 1
+    Cooldown: 3.5
     ProjectileInfo: {fileID: 11400000, guid: d0540cb9c2eab6e439378d26561b3dfd, type: 2}

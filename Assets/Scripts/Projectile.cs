@@ -45,6 +45,10 @@ public class Projectile : MonoBehaviour
                 //_rigidbody.AddForce(transform.right * _moveSpeed, ForceMode2D.Impulse);
                 break;
             case ProjectileType.MonkMultiShot:
+                foreach (var proj in _childProjectiles)
+                {
+                    proj.InitializeProjectile(info, proj.transform.right, false);
+                }
                 break;
         }
 

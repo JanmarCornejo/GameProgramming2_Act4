@@ -119,14 +119,21 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         //Monk - MultiShot
         switch (type)
         {
+            //TODO optimize
             case SkillType.AxeNova:
                 var axeNova = Instantiate(ActiveSkill.ProjectileInfo.Prefab, 
                     transform.position, Quaternion.identity);
                 axeNova.InitializeProjectile(ActiveSkill.ProjectileInfo, Vector2.one);
                 break;
             case SkillType.Teleport:
+                var newPosition = (Vector2)transform.position + (_faceDirection * ActiveSkill.Range);
+                transform.position = newPosition;
                 break;
             case SkillType.MultiShot:
+                var count = (int)ActiveSkill.Range;
+                var shot = Instantiate(ActiveSkill.ProjectileInfo.Prefab, _indicator.OffsetTransform.position,
+                    _indicator.transform.rotation);
+                shot.InitializeProjectile(ActiveSkill.ProjectileInfo, _faceDirection);
                 break;
         }
 
