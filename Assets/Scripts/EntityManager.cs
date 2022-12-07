@@ -7,6 +7,9 @@ public class EntityManager : MonoBehaviour
 {
     public static EntityManager Instance { get; private set; }
     
+    //Only 1 playable at a time
+    // [SerializeField] private 
+    
     public Entity CreateEntity(EntityType type)
     {
         var data = DataManager.Instance.GetEntityInfo(type);
@@ -30,17 +33,5 @@ public class EntityManager : MonoBehaviour
     private void OnDestroy()
     {
         Instance = null;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

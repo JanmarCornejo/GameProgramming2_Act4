@@ -35,5 +35,3 @@ public enum DebugType
     None,
     CreateEntity
 }
-
-// public entity

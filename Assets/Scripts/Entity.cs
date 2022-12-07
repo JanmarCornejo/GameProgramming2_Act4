@@ -6,8 +6,11 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandler
 {
-    //TODO To be called in entity manager or similar
-    public virtual void InitializeEntity(EntityInfo info)
+    /// <summary>
+    /// To initialize entity by values given by EntityInfo
+    /// </summary>
+    /// <param name="info"></param>
+    public void InitializeEntity(EntityInfo info)
     {
         Type = info.Type;
         MaxHealth = info.MaxHealth;
@@ -16,6 +19,8 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         AttackRate = info.AttackRate;
         Skills = info.Skills;
         _spriteRenderer.sprite = info.Sprite;
+        _moveSpeed = info.MoveSpeed;
+        _basicProjectile = info.BasicProjectileInfo;
     }
 
     public EntityType Type { get; private set; }
@@ -31,24 +36,18 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     public int AttackDamage { get; protected set;}
     public float AttackRange { get; protected set;}
     public float AttackRate { get; protected set;}
+    private float _nextAttackTime;
     public Skill ActiveSkill { get; protected set; }
+    private float _nextActiveSkillTime;
     public Skill[] Skills { get; protected set; }
 
-    private SpriteRenderer _spriteRenderer;
-
-    
-    public virtual void AutoAttack()
-    {
-        switch (Type)
-        {
-            case EntityType.Dwarf:
-            case EntityType.Wizard:
-            case EntityType.Monk:
-                //TODO auto attack logic
-                
-                break;
-        }
-    }
+    private TargetIndicator _indicator;
+    //TODO add projectile to object pooling
+    private ProjectileInfo _basicProjectile;
+    protected Rigidbody2D _rigidbody;
+    protected SpriteRenderer _spriteRenderer;
+    [SerializeField] protected float _moveSpeed;
+    [SerializeField] protected Vector2 _faceDirection;
 
     public virtual void Apply(ApplyType type, IHealthDamageHandler agent)
     {
@@ -71,7 +70,8 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     public virtual void OnDie(IHealthDamageHandler agent)
     {
         //TODO dead state for enemy AI
-        // Destroy(this.gameObject);
+        Destroy(this.gameObject);
+        
         switch (agent.Type)
         {
             case EntityType.Dwarf:
@@ -82,10 +82,37 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 break;
         }
     }
+    
+    public virtual void AutoAttack()
+    {
+        switch (Type)
+        {
+            case EntityType.Dwarf:
+            case EntityType.Wizard:
+            case EntityType.Monk:
+                //TODO auto attack logic with directions
+                if (Time.time > _nextAttackTime)
+                {
+                    // Debug.Log("Auto Attack");
+                    var tr = _indicator.OffsetTransform.transform;
+                    var projectile = Instantiate(_basicProjectile.Prefab, tr.position,
+                        _indicator.transform.rotation);
+                    projectile.InitializeProjectile(_basicProjectile, _faceDirection);
+                    _nextAttackTime = Time.time + 1 / AttackRate;
+                }
+                break;
+        }
+    }
 
     public virtual void CastSkill(SkillType type)
     {
         ActiveSkill = Skills.FirstOrDefault(s => s.Type == type);
+        if (ActiveSkill == null)
+            return;
+
+        if (Time.time <= _nextActiveSkillTime) 
+            return;
+
         //TODO logic of the skills
         //Dwarf - AxeNova
         //Wizard - Teleport or Laser
@@ -93,23 +120,28 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         switch (type)
         {
             case SkillType.AxeNova:
+                var axeNova = Instantiate(ActiveSkill.ProjectileInfo.Prefab, 
+                    transform.position, Quaternion.identity);
+                axeNova.InitializeProjectile(ActiveSkill.ProjectileInfo, Vector2.one);
                 break;
             case SkillType.Teleport:
                 break;
             case SkillType.MultiShot:
                 break;
         }
+
+        _nextActiveSkillTime = Time.time + ActiveSkill.Cooldown;
     }
 
     protected virtual  void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Start()
     {
-
+        _indicator = this.transform.GetComponentInChildren<TargetIndicator>();
     }
 
     protected virtual void Update()
@@ -135,6 +167,4 @@ public enum EntityType
     //Enemy
     Slime = 100,
     AbyssMage,
-    
-    
 }

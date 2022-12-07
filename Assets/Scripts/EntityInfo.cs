@@ -9,8 +9,10 @@ public class EntityInfo : ScriptableObject
     public Sprite Sprite;
     public EntityType Type;
     public int MaxHealth;
+    public float MoveSpeed;
     public int AttackDamage;
     public float AttackRange;
     public float AttackRate;
+    public ProjectileInfo BasicProjectileInfo;
     public Skill[] Skills;
 }

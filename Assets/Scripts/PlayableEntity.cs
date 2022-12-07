@@ -10,6 +10,8 @@ public class PlayableEntity : Entity
     [SerializeField] private int _attackDamage;
     [SerializeField] private float _attackRange;
     [SerializeField] private float _attackRate;
+    
+    //variables
 
     protected override void Start()
     {
@@ -27,7 +29,32 @@ public class PlayableEntity : Entity
     
     private void Navigate()
     {
-        //Do movement controls here
+        //Basic movement stuff
+        float xAxis = Input.GetAxisRaw("Horizontal");
+        float yAxis = Input.GetAxisRaw("Vertical");
+        _faceDirection = new Vector2(xAxis, yAxis);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CastSkill(Skills[0].Type);
+        }
         
+        _rigidbody.velocity = _faceDirection * _moveSpeed;
+        FlipSprite();
     }
+
+    private void FlipSprite()
+    {
+        var dirToFace = _faceDirection.x >= 0 ? 1 : -1;
+        _spriteRenderer.flipX = dirToFace == -1;
+
+        //TODO fix direction indicator
+        // if (_spriteRenderer.flipX && _faceDirection == Vector2.zero)
+        // {
+        //     _faceDirection = Vector2.right;
+        // }
+    }
+    
+    public Vector2 GetPointingDirection() => _faceDirection;
+
 }
