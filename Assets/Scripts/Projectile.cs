@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     
     private Rigidbody2D _rigidbody;
     private float _moveSpeed;
+    [SerializeField] AudioClip ShootSfx;
 
     private void Awake()
     {
@@ -21,6 +22,8 @@ public class Projectile : MonoBehaviour
 
     public void InitializeProjectile(ProjectileInfo info, Vector2 direction, bool parentProjectile = true)
     {
+        SoundManager.instance.PlaySound(ShootSfx);
+
         if (parentProjectile)
             _type = info.Type;
         

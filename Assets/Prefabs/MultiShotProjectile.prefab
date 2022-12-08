@@ -139,6 +139,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &429785869983120112
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +279,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &813047631590484201
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +419,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &2185715982520932110
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +559,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &4582021019059896017
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +699,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &5375513762826587101
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,6 +839,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &5719917751517642286
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +907,7 @@ MonoBehaviour:
   - {fileID: 2073609154002321984}
   - {fileID: 5490069956405595350}
   - {fileID: 3304760505195336171}
+  ShootSfx: {fileID: 8300000, guid: ef2f7364feb5c6b4aa8e86ed6a74ce97, type: 3}
 --- !u!1 &8053930897816405012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +1047,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &8060593253239485571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,6 +1187,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &8788713237935261821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1327,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &9163252218888498129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,3 +1467,4 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}

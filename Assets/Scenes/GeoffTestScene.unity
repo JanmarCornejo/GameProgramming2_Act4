@@ -152,10 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b0946fb56826945a941384a7607361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRadius: 10
+  spawnRadius: 25
   time: 1.5
   enemies:
   - {fileID: 1037140030526713781, guid: 54fc13b6ca5959849b3f6fdf20d6c08a, type: 3}
+  - {fileID: 1037140030526713781, guid: 54fc13b6ca5959849b3f6fdf20d6c08a, type: 3}
+  - {fileID: 1037140030526713781, guid: 54fc13b6ca5959849b3f6fdf20d6c08a, type: 3}
+  - {fileID: 1037140030526713781, guid: d44ead6a97cfd3a40bd3727e9592b160, type: 3}
 --- !u!4 &68897833
 Transform:
   m_ObjectHideFlags: 0
@@ -370,6 +373,7 @@ MonoBehaviour:
   Type: 3
   _btn: {fileID: 265927517}
   _parent: {fileID: 79839267}
+  Sound: {fileID: 8300000, guid: 1f65529fa9343c045ad64dbe26bee548, type: 3}
 --- !u!1 &265927515
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +998,7 @@ MonoBehaviour:
   Type: 2
   _btn: {fileID: 1654105318}
   _parent: {fileID: 79839267}
+  Sound: {fileID: 8300000, guid: 1f65529fa9343c045ad64dbe26bee548, type: 3}
 --- !u!1 &641021196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,6 +1598,7 @@ MonoBehaviour:
   Type: 1
   _btn: {fileID: 274694370}
   _parent: {fileID: 79839267}
+  Sound: {fileID: 8300000, guid: 1f65529fa9343c045ad64dbe26bee548, type: 3}
 --- !u!1 &1364232144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,7 +1656,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

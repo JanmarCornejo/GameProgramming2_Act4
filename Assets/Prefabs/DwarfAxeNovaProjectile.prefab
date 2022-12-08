@@ -63,6 +63,7 @@ MonoBehaviour:
   - {fileID: 5991745028963754039}
   - {fileID: 857181152884126714}
   - {fileID: 985371560131345040}
+  ShootSfx: {fileID: 8300000, guid: 52d272da666ca7b4a86821fc772b9a50, type: 3}
 --- !u!1 &3740112629462880955
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +203,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &4708726980527108655
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +343,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &5702457762115034165
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +483,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &5757468696647999542
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +623,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &6280560312536713196
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,6 +763,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &7727218589999450513
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +903,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &8171228650335528923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1043,7 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
 --- !u!1 &8468701794913084439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,3 +1183,4 @@ MonoBehaviour:
   _initializer: 0
   _type: 1
   _childProjectiles: []
+  ShootSfx: {fileID: 0}
