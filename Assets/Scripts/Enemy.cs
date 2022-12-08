@@ -41,5 +41,4 @@ public class Enemy : Entity
         var dirToFace = _faceDirection.x >= 0 ? 1 : -1;
         _spriteRenderer.flipX = dirToFace == -1;
     }
-
 }
