@@ -10,6 +10,8 @@ public class CharacterSelectUI : MonoBehaviour
     [SerializeField] private Button _btn;
     [SerializeField] private GameObject _parent;
 
+    public static event Action playerSpawnEvent;
+
     private void OnEnable()
     {
         _btn.onClick.AddListener(() => SelectCharacter(Type));
@@ -23,6 +25,9 @@ public class CharacterSelectUI : MonoBehaviour
     private void SelectCharacter(EntityType type)
     {
         EntityManager.Instance.CreateEntity(type);
+        playerSpawnEvent?.Invoke();
         Destroy(_parent.gameObject);
     }
+
+
 }

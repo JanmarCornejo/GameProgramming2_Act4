@@ -4,109 +4,42 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    [SerializeField] float speed;
-    [SerializeField] float stopDis;
-    [SerializeField] float backDis;
-
-    [SerializeField] Transform player;
-    [SerializeField] GameObject projectile;
-
-    [SerializeField] float timeShoot;
-    [SerializeField] float startShoot;
-
-    [SerializeField] float agroRange;
-    [SerializeField] float ShootRange;
-
-    [SerializeField] int health = 100;
+    [SerializeField] private Transform player;
+    [SerializeField] private EntityType _type;
+    [SerializeField] private int _attackDamage;
+    [SerializeField] private float _attackRange;
+    [SerializeField] private float _attackRate;
+    private Vector2 movement;
+    private Rigidbody2D rb;
 
     protected override void Start()
     {
+        rb = this.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        timeShoot = startShoot;
+        _type = Type;
+        _attackDamage = AttackDamage;
+        _attackRange = AttackRange;
+        _attackRate = AttackRate;
     }
 
     protected override void UpdateEntity()
     {
-        if (player != null)
-        {
-            float disToPlayer = Vector2.Distance(transform.position, player.position);
+        Vector3 direction = player.position - transform.position;
+        direction.Normalize();
+        movement = direction;
+        moveEnemy(movement);
 
-            //If player is not withing range it will not seek out the player
-
-            if (disToPlayer < agroRange)
-            {
-                EnemyMove();
-            }
-            else
-            {
-                StopMove();
-            }
-        }
-        
     }
 
-    //Will try to find player position and seek player
-
-    private void EnemyMove()
+    void moveEnemy(Vector2 direction)
     {
-        if (Vector2.Distance(transform.position, player.position) > stopDis)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        }
-        else if (Vector2.Distance(transform.position, player.position) < stopDis && Vector2.Distance(transform.position, player.position) > backDis)
-        {
-            transform.position = this.transform.position;
-        }
-        else if (Vector2.Distance(transform.position, player.position) < backDis)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
-        }
-
-
-        //This is a move stop script when the enemy is at a certain distance the enemy will stop at its shooting range
-
-        //float RangeToPlayer = Vector2.Distance(transform.position, player.position);
-        //if(player != null)
-        //{
-        //    if (RangeToPlayer < ShootRange)
-        //    {
-        //        if (timeShoot <= 0)
-        //        {
-        //            Instantiate(projectile, transform.position, Quaternion.identity);
-        //            timeShoot = startShoot;
-        //        }
-        //        else
-        //        {
-        //            timeShoot -= Time.deltaTime;
-        //        }
-        //    }
-        //}
-                 
+        rb.MovePosition((Vector2)transform.position + (direction * _moveSpeed * Time.deltaTime));
     }
 
-    void StopMove()
-    {        
-            transform.position = this.transform.position;       
-    }
-
-
-    //Taking Damage: Can be called from another script and may be used in different weapons when projectile hits the enemy
-
-    public void TakeDamage (int damage)
+    private void FlipSprite()
     {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            Die();
-        }
+        var dirToFace = _faceDirection.x >= 0 ? 1 : -1;
+        _spriteRenderer.flipX = dirToFace == -1;
     }
-
-    void Die()
-    {
-        Destroy(gameObject);
-    }
-
 
 }
