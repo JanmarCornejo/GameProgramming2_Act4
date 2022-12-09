@@ -34,13 +34,15 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
 
         _info = info;
 
-        Shot(_info, direction);
+        Fire(_info, direction);
 
         //TODO back to object pool
-        Destroy(gameObject, 3f);
+        Invoke(nameof(ReturnToPool), 3f);
+        // Destroy(gameObject, 3f);
+        //gameObject.SetActive(false);
     }
 
-    public void Shot(ProjectileInfo info, Vector2 direction)
+    private void Fire(ProjectileInfo info, Vector2 direction)
     {
         switch (_type)
         {
@@ -55,7 +57,11 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
             case ProjectileType.MonkMultiShot:
                 foreach (var proj in _childProjectiles)
                 {
-                    proj.InitializeProjectile(info, proj.transform.right, false);
+                    proj.gameObject.SetActive(true);
+                    var projTransform = proj.transform;
+                    projTransform.localPosition = Vector3.zero;
+                    // projTransform.localRotation = Quaternion.identity;
+                    proj.InitializeProjectile(info, projTransform.right, false);
                 }
                 break;
         }
@@ -69,8 +75,14 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
             Debug.Log(handler.CurrentHealth);
             handler?.Apply(ApplyType.PrimaryDamage, this);
             //TODO back to object pool
-            Destroy(this.gameObject);
+            ReturnToPool();
+            // Destroy(this.gameObject);
         }
+    }
+
+    private void ReturnToPool()
+    {
+        gameObject.SetActive(false);
     }
 
     #region Dud IHealthDamangeHandler

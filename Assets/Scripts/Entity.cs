@@ -83,13 +83,22 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
             case EntityType.Dwarf:
             case EntityType.Wizard:
             case EntityType.Monk:
-                //TODO Restart scene
-                Debug.Log($"Restart Scene");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                _rigidbody.velocity = Vector2.zero;
+                this.TryGetComponent(out Collider2D col);
+                col.isTrigger = true;
+                _spriteRenderer.enabled = false;
+                Invoke(nameof(RestartScene), 2f);
                 return;
         }
         //TODO dead state for enemy AI or going back to object pool
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+        // Destroy(this.gameObject);
+    }
+
+    private void RestartScene()
+    {
+        Debug.Log($"Restart Scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
     public virtual void AutoAttack()
@@ -99,14 +108,14 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
             case EntityType.Dwarf:
             case EntityType.Wizard:
             case EntityType.Monk:
-                //TODO auto attack logic with directions
                 if (Time.time > _nextAttackTime)
                 {
-                    // Debug.Log("Auto Attack");
                     var tr = _indicator.OffsetTransform.transform;
-                    var projectile = Instantiate(_basicProjectile.Prefab, tr.position,
-                        _indicator.transform.rotation);
+                    var projectile = ObjectPoolManager.Instance.GetPoolObject<Projectile>(PoolType.BasicProjectile);
                     projectile.InitializeProjectile(_basicProjectile, _faceDirection);
+                    var projTransform = projectile.transform;
+                    projTransform.position = tr.position;
+                    projTransform.rotation = _indicator.transform.rotation;
                     _nextAttackTime = Time.time + 1 / AttackRate;
                 }
                 break;
@@ -120,18 +129,13 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
             return;
         if (Time.time <= _nextActiveSkillTime) 
             return;
-
-        //TODO logic of the skills
-        //Dwarf - AxeNova
-        //Wizard - Teleport or Laser
-        //Monk - MultiShot
+        
         switch (type)
         {
-            //TODO optimize
             case SkillType.AxeNova:
-                var axeNova = Instantiate(ActiveSkill.ProjectileInfo.Prefab, 
-                    transform.position, Quaternion.identity);
+                var axeNova = ObjectPoolManager.Instance.GetPoolObject<Projectile>(PoolType.AxeNovaProjectile);
                 axeNova.InitializeProjectile(ActiveSkill.ProjectileInfo, Vector2.one);
+                axeNova.transform.position = transform.position;
                 break;
             case SkillType.Teleport:
                 var newPosition = (Vector2)transform.position + (_faceDirection * ActiveSkill.Range);
@@ -139,9 +143,11 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 break;
             case SkillType.MultiShot:
                 var count = (int)ActiveSkill.Range;
-                var shot = Instantiate(ActiveSkill.ProjectileInfo.Prefab, _indicator.OffsetTransform.position,
-                    _indicator.transform.rotation);
-                shot.InitializeProjectile(ActiveSkill.ProjectileInfo, _faceDirection);
+                var multiShot = ObjectPoolManager.Instance.GetPoolObject<Projectile>(PoolType.MultiShotProjectile);
+                var multiShotTransform = multiShot.transform;
+                multiShotTransform.position = _indicator.OffsetTransform.position;
+                multiShotTransform.rotation = _indicator.transform.rotation;
+                multiShot.InitializeProjectile(ActiveSkill.ProjectileInfo, _faceDirection);
                 break;
         }
 

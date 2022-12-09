@@ -4,26 +4,11 @@ using UnityEngine;
 
 public class PlayableEntity : Entity
 {
-    //just to display on inspector
-    [Header("Only for visualization, not for debug")]
-    [SerializeField] private EntityType _type;
-    [SerializeField] private int _attackDamage;
-    [SerializeField] private float _attackRange;
-    [SerializeField] private float _attackRate;
-    
-    //variables
-
-    protected override void Start()
-    {
-        base.Start();
-        _type = Type;
-        _attackDamage = AttackDamage;
-        _attackRange = AttackRange;
-        _attackRate = AttackRate;
-    }
+    [SerializeField] private bool _canControl; 
 
     protected override void UpdateEntity()
     {
+        if (!IsAlive) return;
         Navigate();
     }
     
