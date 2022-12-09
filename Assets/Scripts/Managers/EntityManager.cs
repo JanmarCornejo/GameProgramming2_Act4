@@ -23,8 +23,7 @@ public class EntityManager : Singleton<EntityManager>
             entity.InitializeEntity(data, true);
         }
         else
-            entity.InitializeEntity(data, false);
-        
+            entity.InitializeEntity(data);
         _entities.Add(entity);
         return entity;
     }

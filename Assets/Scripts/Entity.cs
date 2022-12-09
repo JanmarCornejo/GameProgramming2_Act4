@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandler
 {
@@ -68,7 +69,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 CurrentHealth -= agent.ActiveSkill.Damage;
                 break;
         }
-
         
         if(!IsAlive)
             OnDie(this);
@@ -76,8 +76,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
 
     public virtual void OnDie(IHealthDamageHandler agent)
     {
-        //TODO dead state for enemy AI or going back to object pool
-        Destroy(this.gameObject);
         
         switch (agent.Type)
         {
@@ -86,8 +84,11 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
             case EntityType.Monk:
                 //TODO Restart scene
                 Debug.Log($"Restart Scene");
-                break;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                return;
         }
+        //TODO dead state for enemy AI or going back to object pool
+        Destroy(this.gameObject);
     }
     
     public virtual void AutoAttack()
@@ -178,8 +179,9 @@ public enum EntityType
     Monk,
     
     //Enemy
-    SmallGoblin = 100,
-    AbyssMage,
+    BigGoblin = 100,
+    FastGoblin,
+    NormalGoblin,
     
     SampleTarget = 999,
 }
