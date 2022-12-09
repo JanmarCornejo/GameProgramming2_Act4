@@ -850,6 +850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087223719399945318}
   - component: {fileID: 7201318905805493167}
+  - component: {fileID: -7256514046292221571}
   m_Layer: 0
   m_Name: MultiShotProjectile
   m_TagString: Untagged
@@ -908,6 +909,19 @@ MonoBehaviour:
   - {fileID: 5490069956405595350}
   - {fileID: 3304760505195336171}
   ShootSfx: {fileID: 8300000, guid: ef2f7364feb5c6b4aa8e86ed6a74ce97, type: 3}
+--- !u!114 &-7256514046292221571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5719917751517642286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996a10e13df6f5b48bbea0e70dd08523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
 --- !u!1 &8053930897816405012
 GameObject:
   m_ObjectHideFlags: 0

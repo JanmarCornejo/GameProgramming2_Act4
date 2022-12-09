@@ -2004,6 +2004,7 @@ GameObject:
   - component: {fileID: 1790663423}
   - component: {fileID: 1790663424}
   - component: {fileID: 1790663426}
+  - component: {fileID: 1790663427}
   - component: {fileID: 1790663425}
   m_Layer: 0
   m_Name: Managers
@@ -2160,6 +2161,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf39a10f37929834b87d34b2625430f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1790663427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790663421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba2c5d224e87414cb1ddd0841c4e2fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountToPool: 2
+  _objectPoolPath: PoolBags
+  _poolsList: []
 --- !u!1 &1849724957
 GameObject:
   m_ObjectHideFlags: 0
