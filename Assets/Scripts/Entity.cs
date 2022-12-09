@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandler
 {
+    public static event Action<Sprite, Entity> OnUpdatePlayerHUD;
+    public static event Action<float> OnCastSkill;
+
+    
     /// <summary>
     /// To initialize entity by values given by EntityInfo
     /// </summary>
@@ -25,6 +29,8 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         _spriteRenderer.sprite = info.Sprite;
         _moveSpeed = info.MoveSpeed;
         _basicProjectile = info.BasicProjectileInfo;
+        if(IsPlayer)
+            OnUpdatePlayerHUD?.Invoke(_spriteRenderer.sprite, this);
     }
 
     public EntityType Type { get; private set; }
@@ -52,7 +58,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     protected SpriteRenderer _spriteRenderer;
     [SerializeField] protected float _moveSpeed;
     [SerializeField] protected Vector2 _faceDirection;
-
+    
     public virtual void Apply(ApplyType type, IHealthDamageHandler agent)
     {
         if (!IsAlive) return;
@@ -63,6 +69,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 CurrentHealth -= agent.AttackDamage;
                 Debug.Log($"Agent Damage {agent.AttackDamage}");
                 Debug.Log($"Current HP {CurrentHealth}");
+                OnUpdatePlayerHUD?.Invoke(_spriteRenderer.sprite, this);
                 break;
             case ApplyType.SkillDamage:
                 CurrentHealth -= agent.ActiveSkill.Damage;
@@ -149,7 +156,8 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 multiShot.InitializeProjectile(ActiveSkill.ProjectileInfo, _faceDirection);
                 break;
         }
-
+        var skillCooldown = ActiveSkill.Cooldown;
+        OnCastSkill?.Invoke(skillCooldown);
         _nextActiveSkillTime = Time.time + ActiveSkill.Cooldown;
     }
 

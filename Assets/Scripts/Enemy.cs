@@ -27,7 +27,7 @@ public class Enemy : Entity
     public void InitializeEnemy()
     {
         _hp = MaxHealth;
-        player = EntityManager.Instance.GetEntityPlayer().transform;
+        player = EntityManager.Instance.GetPlayerEntity().transform;
     }
 
     protected override void UpdateEntity()

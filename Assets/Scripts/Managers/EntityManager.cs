@@ -30,7 +30,7 @@ public class EntityManager : Singleton<EntityManager>
         return entity;
     }
 
-    public Entity GetEntityPlayer()
+    public Entity GetPlayerEntity()
     {
         return _entities.FirstOrDefault(e => e.IsPlayer);
     }

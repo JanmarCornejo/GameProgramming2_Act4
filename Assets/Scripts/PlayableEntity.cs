@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayableEntity : Entity
 {
+    
     [SerializeField] private bool _canControl; 
 
     protected override void UpdateEntity()

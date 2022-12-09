@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9069854, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.4009434, g: 0.844845, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.00000004768372, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.18057775, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -3554,6 +3554,7 @@ GameObject:
   - component: {fileID: 1690459983}
   - component: {fileID: 1690459985}
   - component: {fileID: 1690459984}
+  - component: {fileID: 1690459986}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -3622,6 +3623,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690459982}
   m_CullTransparentMesh: 1
+--- !u!114 &1690459986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690459982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e0cbafcf49ce044b4a4b7ff13f7a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iconImage: {fileID: 2076841164}
+  _healthBar: {fileID: 1645372144}
+  _skillCooldownBar: {fileID: 586928766}
 --- !u!1 &1726876747
 GameObject:
   m_ObjectHideFlags: 0

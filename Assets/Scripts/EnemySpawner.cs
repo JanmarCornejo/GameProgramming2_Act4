@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnEnemy()
     {
         //Vector2 spawnpos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        Vector2 spawnPos = EntityManager.Instance.GetEntityPlayer().transform.position;
+        Vector2 spawnPos = EntityManager.Instance.GetPlayerEntity().transform.position;
         spawnPos += Random.insideUnitCircle.normalized * spawnRadius;
 
         var randIndex = Random.Range(0, _enemies.Length);
