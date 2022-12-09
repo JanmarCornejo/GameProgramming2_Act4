@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,9 @@ public class Enemy : Entity
     protected override void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        //TODO get the player from data manager
+        player = EntityManager.Instance.GetEntityPlayer().transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
         _type = Type;
         _attackDamage = AttackDamage;
         _attackRange = AttackRange;
@@ -27,18 +30,28 @@ public class Enemy : Entity
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
         movement = direction;
-        moveEnemy(movement);
+        MoveEnemy(movement);
 
     }
 
-    void moveEnemy(Vector2 direction)
+    void MoveEnemy(Vector2 direction)
     {
-        rb.MovePosition((Vector2)transform.position + (direction * _moveSpeed * Time.deltaTime));
+        rb.MovePosition((Vector2)transform.position + (direction * (_moveSpeed * Time.deltaTime)));
     }
 
     private void FlipSprite()
     {
         var dirToFace = _faceDirection.x >= 0 ? 1 : -1;
         _spriteRenderer.flipX = dirToFace == -1;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (!col.gameObject.CompareTag("Player")) return;
+        
+        col.gameObject.TryGetComponent(out IHealthDamageHandler handler);
+        handler.Apply(ApplyType.PrimaryDamage, this);
+        //TODO object pool
+        Destroy(this.gameObject);
     }
 }

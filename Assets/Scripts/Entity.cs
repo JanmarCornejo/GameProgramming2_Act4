@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandler
 {
@@ -10,9 +11,12 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     /// To initialize entity by values given by EntityInfo
     /// </summary>
     /// <param name="info"></param>
-    public void InitializeEntity(EntityInfo info)
+    /// <param name="isPlayer"></param>
+    public void InitializeEntity(EntityInfo info, bool isPlayer = false)
     {
         Type = info.Type;
+        IsPlayer = isPlayer;
+        _hp = info.MaxHealth;
         MaxHealth = info.MaxHealth;
         AttackDamage = info.AttackDamage;
         AttackRange = info.AttackRange;
@@ -24,13 +28,14 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     }
 
     public EntityType Type { get; private set; }
+    public bool IsPlayer { get; private set; }
     public bool IsAlive => CurrentHealth > 0;
-    private int _hp;
+    protected int _hp;
 
     public int CurrentHealth
     {
         get => _hp;
-        private set => _hp = Mathf.Clamp(value, 0, MaxHealth);
+        protected set => _hp = Mathf.Clamp(value, 0, MaxHealth);
     }
     public int MaxHealth { get; protected set;}
     public int AttackDamage { get; protected set;}
@@ -57,6 +62,8 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         {
             case ApplyType.PrimaryDamage:
                 CurrentHealth -= agent.AttackDamage;
+                Debug.Log($"Agent Damage {agent.AttackDamage}");
+                Debug.Log($"Current HP {CurrentHealth}");
                 break;
             case ApplyType.SkillDamage:
                 CurrentHealth -= agent.ActiveSkill.Damage;
@@ -69,8 +76,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
 
     public virtual void OnDie(IHealthDamageHandler agent)
     {
-        //TODO dead state for enemy AI
-        Destroy(this.gameObject);
         
         switch (agent.Type)
         {
@@ -79,8 +84,11 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
             case EntityType.Monk:
                 //TODO Restart scene
                 Debug.Log($"Restart Scene");
-                break;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                return;
         }
+        //TODO dead state for enemy AI or going back to object pool
+        Destroy(this.gameObject);
     }
     
     public virtual void AutoAttack()
@@ -109,7 +117,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         ActiveSkill = Skills.FirstOrDefault(s => s.Type == type);
         if (ActiveSkill == null)
             return;
-
         if (Time.time <= _nextActiveSkillTime) 
             return;
 
@@ -172,6 +179,9 @@ public enum EntityType
     Monk,
     
     //Enemy
-    Slime = 100,
-    AbyssMage,
+    BigGoblin = 100,
+    FastGoblin,
+    NormalGoblin,
+    
+    SampleTarget = 999,
 }

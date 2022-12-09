@@ -10,7 +10,7 @@ public class GameComplete : MonoBehaviour
 
     public void MaineMenuOpt()
     {
-        SoundManager.instance.PlaySound(Click);
+        SoundManager.Instance.PlaySound(Click);
         SceneManager.LoadScene("MainMenu");
     }
 

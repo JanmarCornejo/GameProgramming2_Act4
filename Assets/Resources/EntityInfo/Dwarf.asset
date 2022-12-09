@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Dwarf
   m_EditorClassIdentifier: 
   Name: Dwarf
+  IsPlayer: 1
   Prefab: {fileID: 2850923232702045231, guid: a590d14a3ff5ab64bb3c4c9898d5468a, type: 3}
   Sprite: {fileID: 21300000, guid: b8d53ddc2a1bbd849b812257364f805f, type: 3}
   Type: 1
-  MaxHealth: 100
+  MaxHealth: 5
   MoveSpeed: 8
   AttackDamage: 5
   AttackRange: 2
@@ -27,5 +28,5 @@ MonoBehaviour:
     Type: 1
     Damage: 1
     Range: 0
-    Cooldown: 3.5
+    Cooldown: 2
     ProjectileInfo: {fileID: 11400000, guid: d0540cb9c2eab6e439378d26561b3dfd, type: 2}

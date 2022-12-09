@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Monk
   m_EditorClassIdentifier: 
   Name: Monk
+  IsPlayer: 1
   Prefab: {fileID: 2850923232702045231, guid: a590d14a3ff5ab64bb3c4c9898d5468a, type: 3}
   Sprite: {fileID: 21300000, guid: fcfb546678fae654e99006226b54179c, type: 3}
   Type: 3
-  MaxHealth: 100
+  MaxHealth: 5
   MoveSpeed: 8
   AttackDamage: 5
   AttackRange: 2
@@ -27,5 +28,5 @@ MonoBehaviour:
     Type: 3
     Damage: 1
     Range: 4
-    Cooldown: 4
+    Cooldown: 2
     ProjectileInfo: {fileID: 11400000, guid: f18559374c1002a4cbd399308b64933c, type: 2}

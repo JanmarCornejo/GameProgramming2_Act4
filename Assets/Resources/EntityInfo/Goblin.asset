@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a528dffd303742c996d87c73cfbd51ca, type: 3}
-  m_Name: SmallGoblin
+  m_Name: Goblin
   m_EditorClassIdentifier: 
-  Name: Small Goblin
+  Name: Goblin
+  IsPlayer: 0
   Prefab: {fileID: 1037140030526713787, guid: 54fc13b6ca5959849b3f6fdf20d6c08a, type: 3}
   Sprite: {fileID: 21300000, guid: 6803fd4b149c01e49a9f4d77d58cf09f, type: 3}
-  Type: 0
-  MaxHealth: 10
+  Type: 102
+  MaxHealth: 1
   MoveSpeed: 5
-  AttackDamage: 5
+  AttackDamage: 1
   AttackRange: 1
   AttackRate: 0
   BasicProjectileInfo: {fileID: 0}
