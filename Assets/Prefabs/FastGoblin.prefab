@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1037140030526713784}
   - component: {fileID: 1037140030526713785}
   - component: {fileID: 1037140030526713787}
+  - component: {fileID: -1525138640871274242}
   m_Layer: 0
   m_Name: FastGoblin
   m_TagString: Enemy
@@ -143,3 +144,16 @@ MonoBehaviour:
   _attackDamage: 5
   _attackRange: 2
   _attackRate: 1
+--- !u!114 &-1525138640871274242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037140030526713781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996a10e13df6f5b48bbea0e70dd08523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0

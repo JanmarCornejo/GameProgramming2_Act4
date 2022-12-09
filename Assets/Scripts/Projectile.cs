@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
     private Rigidbody2D _rigidbody;
     private float _moveSpeed;
     [SerializeField] AudioClip ShootSfx;
+    private ProjectileInfo _info;
+    
 
     private void Awake()
     {
@@ -30,6 +32,16 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
         _moveSpeed = info.MoveSpeed;
         AttackDamage = info.Damage;
 
+        _info = info;
+
+        Shot(_info, direction);
+
+        //TODO back to object pool
+        Destroy(gameObject, 3f);
+    }
+
+    public void Shot(ProjectileInfo info, Vector2 direction)
+    {
         switch (_type)
         {
             case ProjectileType.DwarfBasic:
@@ -47,9 +59,6 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
                 }
                 break;
         }
-
-        //TODO back to object pool
-        Destroy(gameObject, 3f);
     }
 
     private void OnTriggerEnter2D(Collider2D col)

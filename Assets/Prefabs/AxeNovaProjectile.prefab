@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6261985166020554400}
   - component: {fileID: 3017550139387971945}
+  - component: {fileID: 9087475759339191956}
   m_Layer: 0
-  m_Name: DwarfAxeNovaProjectile
+  m_Name: AxeNovaProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,6 +65,19 @@ MonoBehaviour:
   - {fileID: 857181152884126714}
   - {fileID: 985371560131345040}
   ShootSfx: {fileID: 8300000, guid: 52d272da666ca7b4a86821fc772b9a50, type: 3}
+--- !u!114 &9087475759339191956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392233582390224104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996a10e13df6f5b48bbea0e70dd08523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
 --- !u!1 &3740112629462880955
 GameObject:
   m_ObjectHideFlags: 0

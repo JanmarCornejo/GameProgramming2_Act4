@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4731425703246554525}
   - component: {fileID: 4731425703246554524}
   - component: {fileID: 4731425703246554527}
+  - component: {fileID: -3910558737272190347}
   m_Layer: 0
   m_Name: BasicProjectile
   m_TagString: Untagged
@@ -140,3 +141,16 @@ MonoBehaviour:
   _type: 1
   _childProjectiles: []
   ShootSfx: {fileID: 8300000, guid: 0a0ee3b3519d42e44b98db608ed69a89, type: 3}
+--- !u!114 &-3910558737272190347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731425703246554526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996a10e13df6f5b48bbea0e70dd08523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0

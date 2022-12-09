@@ -30,12 +30,13 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     public EntityType Type { get; private set; }
     public bool IsPlayer { get; private set; }
     public bool IsAlive => CurrentHealth > 0;
+    //TODO return to private
     protected int _hp;
 
     public int CurrentHealth
     {
         get => _hp;
-        protected set => _hp = Mathf.Clamp(value, 0, MaxHealth);
+        private set => _hp = Mathf.Clamp(value, 0, MaxHealth);
     }
     public int MaxHealth { get; protected set;}
     public int AttackDamage { get; protected set;}
