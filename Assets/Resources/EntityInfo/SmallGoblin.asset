@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Small Goblin
   Prefab: {fileID: 1037140030526713787, guid: 54fc13b6ca5959849b3f6fdf20d6c08a, type: 3}
   Sprite: {fileID: 21300000, guid: 6803fd4b149c01e49a9f4d77d58cf09f, type: 3}
-  Type: 0
+  Type: 100
   MaxHealth: 10
   MoveSpeed: 5
   AttackDamage: 5

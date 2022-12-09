@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
+        //TODO find the player via data manager
         Vector2 spawnpos = GameObject.FindGameObjectWithTag("Player").transform.position;
         spawnpos += Random.insideUnitCircle.normalized * spawnRadius;
 

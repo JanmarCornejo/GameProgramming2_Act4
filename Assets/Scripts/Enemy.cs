@@ -15,6 +15,7 @@ public class Enemy : Entity
     protected override void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        //TODO get the player from data manager
         player = GameObject.FindGameObjectWithTag("Player").transform;
         _type = Type;
         _attackDamage = AttackDamage;
@@ -33,7 +34,7 @@ public class Enemy : Entity
 
     void moveEnemy(Vector2 direction)
     {
-        rb.MovePosition((Vector2)transform.position + (direction * _moveSpeed * Time.deltaTime));
+        rb.MovePosition((Vector2)transform.position + (direction * (_moveSpeed * Time.deltaTime)));
     }
 
     private void FlipSprite()

@@ -10,7 +10,7 @@ public class GameOver : MonoBehaviour
 
     public void MaineMenuOpt()
     {
-        SoundManager.instance.PlaySound(MenuClick);
+        SoundManager.Instance.PlaySound(MenuClick);
         SceneManager.LoadScene("MainMenu");
     }
 

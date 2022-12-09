@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
 
     public void InitializeProjectile(ProjectileInfo info, Vector2 direction, bool parentProjectile = true)
     {
-        SoundManager.instance.PlaySound(ShootSfx);
+        SoundManager.Instance.PlaySound(ShootSfx);
 
         if (parentProjectile)
             _type = info.Type;

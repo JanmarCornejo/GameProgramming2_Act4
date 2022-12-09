@@ -172,6 +172,6 @@ public enum EntityType
     Monk,
     
     //Enemy
-    Slime = 100,
+    SmallGoblin = 100,
     AbyssMage,
 }

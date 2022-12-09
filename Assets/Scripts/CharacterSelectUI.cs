@@ -26,7 +26,7 @@ public class CharacterSelectUI : MonoBehaviour
     private void SelectCharacter(EntityType type)
     {
         EntityManager.Instance.CreateEntity(type);
-        SoundManager.instance.PlaySound(Sound);
+        SoundManager.Instance.PlaySound(Sound);
         playerSpawnEvent?.Invoke();
         Destroy(_parent.gameObject);
     }

@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
-    public static SoundManager instance { get; private set; }
-
     private AudioSource source;
 
-    private void Awake()
+    protected override void Awake()
     {
-        instance = this;
+        base.Awake();
         source = GetComponent<AudioSource>();
+
     }
 
     public void PlaySound(AudioClip _sound)

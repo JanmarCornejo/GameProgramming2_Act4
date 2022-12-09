@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityManager : MonoBehaviour
+public class EntityManager : Singleton<EntityManager>
 {
-    public static EntityManager Instance { get; private set; }
     
     //Only 1 playable at a time
     // [SerializeField] private 
@@ -17,21 +16,5 @@ public class EntityManager : MonoBehaviour
         var entity = obj.GetComponent<Entity>();
         entity.InitializeEntity(data);
         return entity;
-    }
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
-
-    private void OnDestroy()
-    {
-        Instance = null;
     }
 }

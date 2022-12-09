@@ -3,23 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour
+public class DataManager : Singleton<DataManager>
 {
-    public static DataManager Instance { get; private set; }
-
     [SerializeField] private string _entityInfoPath = "EntityInfo";
     private Dictionary<EntityType, EntityInfo> _entityData = new Dictionary<EntityType, EntityInfo>();
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        Instance = this;
-
+        base.Awake();
         var entityInfos = Resources.LoadAll<EntityInfo>(_entityInfoPath);
         foreach (var e in entityInfos)
         {
@@ -30,10 +21,5 @@ public class DataManager : MonoBehaviour
     public EntityInfo GetEntityInfo(EntityType type)
     {
        return _entityData[type];
-    }
-
-    private void OnDestroy()
-    {
-        Instance = null;
     }
 }

@@ -29,7 +29,7 @@ public class PlayableEntity : Entity
     
     private void Navigate()
     {
-        //Basic movement stuff
+        //Basic movement and skill stuff
         float xAxis = Input.GetAxisRaw("Horizontal");
         float yAxis = Input.GetAxisRaw("Vertical");
         _faceDirection = new Vector2(xAxis, yAxis);
