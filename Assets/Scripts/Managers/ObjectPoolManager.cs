@@ -96,4 +96,6 @@ public enum PoolType
     BigGoblin,
     FastGoblin,
     Goblin,
+    DeathEffect,
+    
 }

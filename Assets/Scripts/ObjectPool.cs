@@ -18,7 +18,17 @@ public class ObjectPool : MonoBehaviour
         tr.position = position;
         tr.rotation = rotation;
     }
-    
+
+    public void ReturnToPool(float time = 2f)
+    {
+        Invoke(nameof(ReturnObj), time);
+    }
+
+    private void ReturnObj()
+    {
+        gameObject.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -68,6 +68,9 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
         {
             col.TryGetComponent(out IHealthDamageHandler handler);
             Debug.Log(handler.CurrentHealth);
+            var fx = ObjectPoolManager.Instance.GetPoolObject<ObjectPool>(PoolType.DeathEffect);
+            fx.transform.position = col.transform.position;
+            fx.ReturnToPool(1f);
             handler?.Apply(ApplyType.PrimaryDamage, this);
             ReturnToPool();
             // Destroy(this.gameObject);
