@@ -31,15 +31,10 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
         
         _moveSpeed = info.MoveSpeed;
         AttackDamage = info.Damage;
-
         _info = info;
-
         Fire(_info, direction);
-
-        //TODO back to object pool
         Invoke(nameof(ReturnToPool), 3f);
         // Destroy(gameObject, 3f);
-        //gameObject.SetActive(false);
     }
 
     private void Fire(ProjectileInfo info, Vector2 direction)
@@ -74,7 +69,6 @@ public class Projectile : MonoBehaviour, IHealthDamageHandler
             col.TryGetComponent(out IHealthDamageHandler handler);
             Debug.Log(handler.CurrentHealth);
             handler?.Apply(ApplyType.PrimaryDamage, this);
-            //TODO back to object pool
             ReturnToPool();
             // Destroy(this.gameObject);
         }

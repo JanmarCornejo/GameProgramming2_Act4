@@ -16,7 +16,6 @@ public class Enemy : Entity
     protected override void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        //TODO get the player from data manager
         //player = GameObject.FindGameObjectWithTag("Player").transform;
         InitializeEnemy();
         _type = Type;
@@ -57,7 +56,6 @@ public class Enemy : Entity
         
         col.gameObject.TryGetComponent(out IHealthDamageHandler handler);
         handler.Apply(ApplyType.PrimaryDamage, this);
-        //TODO object pool
         // Destroy(this.gameObject);
         gameObject.SetActive(false);
     }

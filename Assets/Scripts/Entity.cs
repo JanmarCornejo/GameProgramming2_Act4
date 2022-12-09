@@ -30,7 +30,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     public EntityType Type { get; private set; }
     public bool IsPlayer { get; private set; }
     public bool IsAlive => CurrentHealth > 0;
-    //TODO return to private
     protected int _hp;
 
     public int CurrentHealth
@@ -48,7 +47,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     public Skill[] Skills { get; protected set; }
 
     private TargetIndicator _indicator;
-    //TODO add projectile to object pooling
     private ProjectileInfo _basicProjectile;
     protected Rigidbody2D _rigidbody;
     protected SpriteRenderer _spriteRenderer;
@@ -77,7 +75,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
 
     public virtual void OnDie(IHealthDamageHandler agent)
     {
-        
         switch (agent.Type)
         {
             case EntityType.Dwarf:
@@ -87,11 +84,12 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 this.TryGetComponent(out Collider2D col);
                 col.isTrigger = true;
                 _spriteRenderer.enabled = false;
+                SoundManager.Instance.PlaySound(SoundType.PlayerDeath);
                 Invoke(nameof(RestartScene), 2f);
                 return;
         }
-        //TODO dead state for enemy AI or going back to object pool
         gameObject.SetActive(false);
+        SoundManager.Instance.PlaySound(SoundType.EnemyDeath);
         // Destroy(this.gameObject);
     }
 
@@ -140,6 +138,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
             case SkillType.Teleport:
                 var newPosition = (Vector2)transform.position + (_faceDirection * ActiveSkill.Range);
                 transform.position = newPosition;
+                SoundManager.Instance.PlaySound(SoundType.Teleport);
                 break;
             case SkillType.MultiShot:
                 var count = (int)ActiveSkill.Range;
@@ -167,6 +166,8 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
 
     protected virtual void Update()
     {
+        if (!IsAlive) return;
+        
         UpdateEntity();
         AutoAttack();
     }

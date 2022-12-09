@@ -11,7 +11,6 @@ public class Skill
     public float Range;
     public float Cooldown;
     public ProjectileInfo ProjectileInfo;
-    //TODO vfx, sounds, etc
 }
 
 public enum SkillType
