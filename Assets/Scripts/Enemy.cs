@@ -17,12 +17,18 @@ public class Enemy : Entity
     {
         rb = this.GetComponent<Rigidbody2D>();
         //TODO get the player from data manager
-        player = EntityManager.Instance.GetEntityPlayer().transform;
         //player = GameObject.FindGameObjectWithTag("Player").transform;
+        InitializeEnemy();
         _type = Type;
         _attackDamage = AttackDamage;
         _attackRange = AttackRange;
         _attackRate = AttackRate;
+    }
+
+    public void InitializeEnemy()
+    {
+        _hp = MaxHealth;
+        player = EntityManager.Instance.GetEntityPlayer().transform;
     }
 
     protected override void UpdateEntity()
@@ -52,6 +58,7 @@ public class Enemy : Entity
         col.gameObject.TryGetComponent(out IHealthDamageHandler handler);
         handler.Apply(ApplyType.PrimaryDamage, this);
         //TODO object pool
-        Destroy(this.gameObject);
+        // Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 }

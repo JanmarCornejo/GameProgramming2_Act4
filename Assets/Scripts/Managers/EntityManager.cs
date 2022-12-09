@@ -15,15 +15,17 @@ public class EntityManager : Singleton<EntityManager>
     public Entity CreateEntity(EntityType type)
     {
         var data = DataManager.Instance.GetEntityInfo(type);
-        var obj = Instantiate(data.Prefab);
-        var entity = obj.GetComponent<Entity>();
         if (!_playerInsideGame)
         {
             _playerInsideGame = true;
-            entity.InitializeEntity(data, true);
+            var obj = Instantiate(data.Prefab);
+            obj.TryGetComponent(out Entity player);
+            player.InitializeEntity(data, true);
+            _entities.Add(player);
+            return player;
         }
-        else
-            entity.InitializeEntity(data);
+        var entity = ObjectPoolManager.Instance.GetPoolObject<Entity>(type);
+        entity.InitializeEntity(data);
         _entities.Add(entity);
         return entity;
     }

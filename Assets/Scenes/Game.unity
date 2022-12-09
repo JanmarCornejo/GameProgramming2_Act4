@@ -2173,7 +2173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba2c5d224e87414cb1ddd0841c4e2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amountToPool: 2
+  _initAmountToPool: 2
   _objectPoolPath: PoolBags
   _poolsList: []
 --- !u!1 &1849724957

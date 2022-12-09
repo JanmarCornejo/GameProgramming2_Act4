@@ -223,10 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 0
   _faceDirection: {x: 0, y: 0}
-  _type: 0
-  _attackDamage: 0
-  _attackRange: 0
-  _attackRate: 0
+  _canControl: 0
 --- !u!1 &6740645029775269133
 GameObject:
   m_ObjectHideFlags: 0
