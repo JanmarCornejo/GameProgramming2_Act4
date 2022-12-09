@@ -16,3 +16,4 @@ MonoBehaviour:
   Type: 4
   Prefab: {fileID: 3017550139387971945, guid: 0ac963568c5e1b444a03f5e13997c889, type: 3}
   MoveSpeed: 14
+  Damage: 1

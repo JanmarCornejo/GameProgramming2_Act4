@@ -7,7 +7,7 @@ public class DataManager : Singleton<DataManager>
 {
     [SerializeField] private string _entityInfoPath = "EntityInfo";
     private Dictionary<EntityType, EntityInfo> _entityData = new Dictionary<EntityType, EntityInfo>();
-
+    
     protected override void Awake()
     {
         base.Awake();

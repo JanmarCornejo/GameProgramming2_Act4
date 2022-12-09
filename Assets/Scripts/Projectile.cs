@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IHealthDamageHandler
 {
     [SerializeField] private bool _initializer;
     [SerializeField] private ProjectileType _type;
@@ -28,6 +28,7 @@ public class Projectile : MonoBehaviour
             _type = info.Type;
         
         _moveSpeed = info.MoveSpeed;
+        AttackDamage = info.Damage;
 
         switch (_type)
         {
@@ -35,18 +36,10 @@ public class Projectile : MonoBehaviour
             case ProjectileType.WizardBasic:
             case ProjectileType.MonkBasic:
                 if (direction == Vector2.zero)
-                {
                     direction = Vector2.right;
-                }
                 _rigidbody.AddForce(direction * _moveSpeed, ForceMode2D.Impulse);
                 break;
             case ProjectileType.DwarfAxeNova:
-                foreach (var proj in _childProjectiles)
-                {
-                    proj.InitializeProjectile(info, proj.transform.right, false);
-                }
-                //_rigidbody.AddForce(transform.right * _moveSpeed, ForceMode2D.Impulse);
-                break;
             case ProjectileType.MonkMultiShot:
                 foreach (var proj in _childProjectiles)
                 {
@@ -58,8 +51,41 @@ public class Projectile : MonoBehaviour
         //TODO back to object pool
         Destroy(gameObject, 3f);
     }
-    
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Enemy"))
+        {
+            col.TryGetComponent(out IHealthDamageHandler handler);
+            Debug.Log(handler.CurrentHealth);
+            handler?.Apply(ApplyType.PrimaryDamage, this);
+            //TODO back to object pool
+            Destroy(this.gameObject);
+        }
+    }
+
+    #region Dud IHealthDamangeHandler
+
+    public EntityType Type { get; }
+    public bool IsAlive { get; }
+    public int CurrentHealth { get; }
+    public int MaxHealth { get; }
+    public float AttackRange { get; }
+    public float AttackRate { get; }
+    public Skill ActiveSkill { get; }
+    public void AutoAttack() { }
+    
+    public void Apply(ApplyType type, IHealthDamageHandler agent)
+    {
+    }
+    
+    #endregion
+    
+    public int AttackDamage { get; private set; }
+
+    public void OnDie(IHealthDamageHandler agent)
+    {
+    }
 }
 
 public enum ProjectileType

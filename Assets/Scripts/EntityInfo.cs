@@ -5,6 +5,7 @@ using UnityEngine;
 public class EntityInfo : ScriptableObject
 {
     public string Name;
+    public bool IsPlayer;
     public Entity Prefab;
     public Sprite Sprite;
     public EntityType Type;

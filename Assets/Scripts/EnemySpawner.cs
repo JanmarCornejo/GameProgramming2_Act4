@@ -11,11 +11,11 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        //TODO find the player via data manager
-        Vector2 spawnpos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        spawnpos += Random.insideUnitCircle.normalized * spawnRadius;
+        //Vector2 spawnpos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        Vector2 spawnPos = EntityManager.Instance.GetEntityPlayer().transform.position;
+        spawnPos += Random.insideUnitCircle.normalized * spawnRadius;
 
-        Instantiate(enemies[Random.Range(0, enemies.Length)], spawnpos, Quaternion.identity);
+        Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPos, Quaternion.identity);
         yield return new WaitForSeconds(time);
         StartCoroutine(SpawnEnemy());
     }

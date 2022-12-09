@@ -9,5 +9,5 @@ public class ProjectileInfo : ScriptableObject
     public ProjectileType Type;
     public Projectile Prefab;
     public float MoveSpeed;
-
+    public int Damage;
 }

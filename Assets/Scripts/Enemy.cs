@@ -16,7 +16,8 @@ public class Enemy : Entity
     {
         rb = this.GetComponent<Rigidbody2D>();
         //TODO get the player from data manager
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = EntityManager.Instance.GetEntityPlayer().transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
         _type = Type;
         _attackDamage = AttackDamage;
         _attackRange = AttackRange;
