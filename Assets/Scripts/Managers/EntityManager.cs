@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EntityManager : Singleton<EntityManager>
 {
@@ -10,8 +11,12 @@ public class EntityManager : Singleton<EntityManager>
     
     //Only 1 playable at a time
     private bool _playerInsideGame = false;
-    // [SerializeField] private 
     
+    /// <summary>
+    /// All entities are created
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
     public Entity CreateEntity(EntityType type)
     {
         var data = DataManager.Instance.GetEntityInfo(type);
@@ -21,6 +26,7 @@ public class EntityManager : Singleton<EntityManager>
             var obj = Instantiate(data.Prefab);
             obj.TryGetComponent(out Entity player);
             player.InitializeEntity(data, true);
+            player.OnEntityDied += OnEntityDied;
             _entities.Add(player);
             return player;
         }
@@ -28,6 +34,11 @@ public class EntityManager : Singleton<EntityManager>
         entity.InitializeEntity(data);
         _entities.Add(entity);
         return entity;
+    }
+
+    private void OnEntityDied()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public Entity GetPlayerEntity()

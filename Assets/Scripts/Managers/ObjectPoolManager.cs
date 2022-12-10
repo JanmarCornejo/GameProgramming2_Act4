@@ -62,14 +62,26 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         return null;
     }
 
-    public T GetPoolObject<T>(PoolType type)
+    /// <summary>
+    /// Get pooled object with any MonoBehaviour class
+    /// </summary>
+    /// <param name="type"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public T GetPoolObject<T>(PoolType type) where T : MonoBehaviour
     {
         GameObject pool = GetPoolObject(type);
         pool.TryGetComponent(out T component);
         return component;
     }
     
-    public T GetPoolObject<T>(EntityType entityType)
+    /// <summary>
+    /// Get pooled object from Entities
+    /// </summary>
+    /// <param name="entityType"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public T GetPoolObject<T>(EntityType entityType) where T : Entity
     {
         var type = entityType switch
         {
@@ -79,8 +91,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             _ => PoolType.Unassigned
         };
 
-        GameObject pool = GetPoolObject(type);
-        pool.TryGetComponent(out T component);
+        var component = GetPoolObject<T>(type);
         return component;
     }
 }

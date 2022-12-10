@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandler
 {
     public static event Action<Sprite, Entity> OnUpdatePlayerHUD;
     public static event Action<float> OnCastSkill;
+    public event Action OnEntityDied;
 
     
     /// <summary>
@@ -59,6 +59,12 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     [SerializeField] protected float _moveSpeed;
     [SerializeField] protected Vector2 _faceDirection;
     
+    /// <summary>
+    /// All interactions of entity will be calculated here
+    /// eg Basic Damage, Skill Damage, etc
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="agent"></param>
     public virtual void Apply(ApplyType type, IHealthDamageHandler agent)
     {
         if (!IsAlive) return;
@@ -92,7 +98,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 col.isTrigger = true;
                 _spriteRenderer.enabled = false;
                 SoundManager.Instance.PlaySound(SoundType.PlayerDeath);
-                Invoke(nameof(RestartScene), 2f);
+                Invoke(nameof(InvokeRestartScene), 2f);
                 return;
         }
         gameObject.SetActive(false);
@@ -100,12 +106,16 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         // Destroy(this.gameObject);
     }
 
-    private void RestartScene()
+    private void InvokeRestartScene()
     {
+        OnEntityDied?.Invoke();
         Debug.Log($"Restart Scene");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
+    /// <summary>
+    /// To do auto attack
+    /// </summary>
     public virtual void AutoAttack()
     {
         switch (Type)
@@ -127,6 +137,10 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         }
     }
 
+    /// <summary>
+    /// To Cast Skills
+    /// </summary>
+    /// <param name="type"></param>
     public virtual void CastSkill(SkillType type)
     {
         ActiveSkill = Skills.FirstOrDefault(s => s.Type == type);
@@ -181,7 +195,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     }
     
     /// <summary>
-    /// Will call this function every frame
+    /// Calling update every frame
     /// </summary>
     protected abstract void UpdateEntity();
 }

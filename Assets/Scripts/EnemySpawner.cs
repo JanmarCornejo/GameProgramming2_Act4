@@ -18,7 +18,9 @@ public class EnemySpawner : MonoBehaviour
 
         var randIndex = Random.Range(0, _enemies.Length);
         var entity = EntityManager.Instance.CreateEntity(_enemies[randIndex]);
-        entity.transform.position = spawnPos;
+        var enemy = (Enemy)entity;
+        enemy.InitializeEnemy();
+        enemy.transform.position = spawnPos;
         //Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPos, Quaternion.identity);
         yield return new WaitForSeconds(time);
         StartCoroutine(SpawnEnemy());
