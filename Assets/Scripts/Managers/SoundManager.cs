@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class SoundManager : Singleton<SoundManager>
 {
     private AudioSource source;
+    [SerializeField] AudioClip BackgroundMusic;
 
     [SerializeField] private Sound[] _soundData;
     private Dictionary<SoundType, Sound> _sounds = new Dictionary<SoundType, Sound>();
@@ -19,6 +20,11 @@ public class SoundManager : Singleton<SoundManager>
         {
             _sounds[s.Type] = s;
         }
+    }
+
+    private void Start()
+    {
+        PlaySound(BackgroundMusic);
     }
 
     public void PlaySound(AudioClip sound)

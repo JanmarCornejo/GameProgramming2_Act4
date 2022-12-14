@@ -48,5 +48,4 @@ public class PlayableEntity : Entity
     }
     
     public Vector2 GetPointingDirection() => _faceDirection;
-
 }
