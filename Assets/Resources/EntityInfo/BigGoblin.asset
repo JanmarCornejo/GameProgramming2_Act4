@@ -17,9 +17,9 @@ MonoBehaviour:
   Prefab: {fileID: 1037140030526713787, guid: 58b8987c47540c640bc54ed1599c7af7, type: 3}
   Sprite: {fileID: 21300000, guid: 6803fd4b149c01e49a9f4d77d58cf09f, type: 3}
   Type: 100
-  MaxHealth: 1
-  MoveSpeed: 7
-  AttackDamage: 1
+  MaxHealth: 2
+  MoveSpeed: 10
+  AttackDamage: 2
   AttackRange: 1
   AttackRate: 0
   BasicProjectileInfo: {fileID: 0}
