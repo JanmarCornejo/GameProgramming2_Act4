@@ -7,9 +7,13 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] private PoolType _type;
     public PoolType GetPoolType() => _type;
 
+    private bool _initialized = false;
+
     public void Initialize(PoolType type)
     {
+        if (_initialized) return;
         _type = type;
+        _initialized = true;
     }
 
     public void SetPositionAndRotation(Vector3 position, Quaternion rotation)
@@ -27,17 +31,5 @@ public class ObjectPool : MonoBehaviour
     private void ReturnObj()
     {
         gameObject.SetActive(false);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
