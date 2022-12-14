@@ -211,8 +211,6 @@ MonoBehaviour:
   time: 1.5
   enemies:
   - {fileID: 1037140030526713781, guid: 54fc13b6ca5959849b3f6fdf20d6c08a, type: 3}
-  - {fileID: 1037140030526713781, guid: 54fc13b6ca5959849b3f6fdf20d6c08a, type: 3}
-  - {fileID: 1037140030526713781, guid: 54fc13b6ca5959849b3f6fdf20d6c08a, type: 3}
   - {fileID: 1037140030526713781, guid: d44ead6a97cfd3a40bd3727e9592b160, type: 3}
   - {fileID: 1037140030526713781, guid: 58b8987c47540c640bc54ed1599c7af7, type: 3}
   _enemies: 640000006500000066000000
@@ -3582,7 +3580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 500, y: 240}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1690459984

@@ -18,7 +18,7 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: 6803fd4b149c01e49a9f4d77d58cf09f, type: 3}
   Type: 101
   MaxHealth: 1
-  MoveSpeed: 13
+  MoveSpeed: 30
   AttackDamage: 1
   AttackRange: 1
   AttackRate: 0
