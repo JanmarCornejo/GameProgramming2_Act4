@@ -17,15 +17,20 @@ public class PlayableEntity : Entity
     private void Navigate()
     {
         //Basic movement and skill stuff
-        float xAxis = Input.GetAxisRaw("Horizontal");
-        float yAxis = Input.GetAxisRaw("Vertical");
-        _faceDirection = new Vector2(xAxis, yAxis);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CastSkill(Skills[0].Type);
         }
         
+        float xAxis = Input.GetAxisRaw("Horizontal");
+        float yAxis = Input.GetAxisRaw("Vertical");
+        Vector2 currentDirection = new Vector2(xAxis, yAxis);
+        if (currentDirection == Vector2.zero)
+        {
+            _rigidbody.velocity = Vector2.zero;
+            return;
+        }
+        _faceDirection = currentDirection;
         _rigidbody.velocity = _faceDirection * _moveSpeed;
         FlipSprite();
     }

@@ -146,8 +146,11 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         ActiveSkill = Skills.FirstOrDefault(s => s.Type == type);
         if (ActiveSkill == null)
             return;
-        if (Time.time <= _nextActiveSkillTime) 
+        if (Time.time <= _nextActiveSkillTime)
+        {
+            //TODO pop up UI "Skill not yet Ready"
             return;
+        }
         
         switch (type)
         {
