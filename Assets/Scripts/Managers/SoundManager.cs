@@ -5,8 +5,9 @@ using UnityEngine.Audio;
 
 public class SoundManager : Singleton<SoundManager>
 {
-    private AudioSource source;
-    [SerializeField] AudioClip BackgroundMusic;
+    [SerializeField] private AudioSource _sfxSource;
+    [SerializeField] private AudioSource _musicSource;
+    [SerializeField] AudioClip _bgMusic;
 
     [SerializeField] private Sound[] _soundData;
     private Dictionary<SoundType, Sound> _sounds = new Dictionary<SoundType, Sound>();
@@ -14,7 +15,7 @@ public class SoundManager : Singleton<SoundManager>
     protected override void Awake()
     {
         base.Awake();
-        source = GetComponent<AudioSource>();
+        _sfxSource = GetComponent<AudioSource>();
 
         foreach (var s in _soundData)
         {
@@ -24,12 +25,13 @@ public class SoundManager : Singleton<SoundManager>
 
     private void Start()
     {
-        PlaySound(BackgroundMusic);
+        //PlaySound(_bgMusic);
+        PlayMusic(_bgMusic);
     }
 
     public void PlaySound(AudioClip sound)
     {
-        source.PlayOneShot(sound);
+        _sfxSource.PlayOneShot(sound);
     }
 
     public void PlaySound(SoundType type)
@@ -38,6 +40,13 @@ public class SoundManager : Singleton<SoundManager>
         {
             PlaySound(data.Clip);
         }
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        _musicSource.Stop();
+        _musicSource.clip = clip;
+        _musicSource.Play();
     }
 }
 

@@ -3,30 +3,30 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using UnityEngine;
 
+//TODO link the achievement when saving
 [System.Serializable]
 public class SaveData
 {
-    public int health;
-    public float[] position;
+    public int Health;
+    public float[] Positions;
 
     public SaveData(Entity entity)
     {
-        health = entity.CurrentHealth;
-        position = new float[3];
-
-        position[0] = entity.transform.position.x;
-        position[1] = entity.transform.position.y;
-        position[2] = entity.transform.position.z;
+        Health = entity.CurrentHealth;
+        Positions = new float[3];
+        var entityPos = entity.transform.position;
+        Positions[0] = entityPos.x;
+        Positions[1] = entityPos.y;
+        Positions[2] = entityPos.z;
 
     }
 
     public SaveData()
     {
-        health = 5;
-        position = new float[3];
-
-        position[0] = 0;
-        position[1] = 0;
-        position[2] = 0;
+        Health = 5;
+        Positions = new float[3];
+        Positions[0] = 0;
+        Positions[1] = 0;
+        Positions[2] = 0;
     }
 }

@@ -11,7 +11,7 @@ public class EntityManager : Singleton<EntityManager>
     
     //Only 1 playable at a time
     private bool _playerInsideGame = false;
-    
+
     /// <summary>
     /// All entities are created
     /// </summary>
@@ -23,6 +23,7 @@ public class EntityManager : Singleton<EntityManager>
         if (!_playerInsideGame)
         {
             _playerInsideGame = true;
+            //TODO object pool player controller
             var obj = Instantiate(data.Prefab);
             obj.TryGetComponent(out Entity player);
             player.InitializeEntity(data, true);
@@ -36,6 +37,7 @@ public class EntityManager : Singleton<EntityManager>
         return entity;
     }
 
+    //TODO Share event with entities
     private void OnEntityDied()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

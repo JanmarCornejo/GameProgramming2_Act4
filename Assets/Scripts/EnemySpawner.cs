@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
         enemy.InitializeEnemy();
         enemy.transform.position = spawnPos;
         //Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPos, Quaternion.identity);
+        //TODO difficulty
         yield return new WaitForSeconds(time);
         StartCoroutine(SpawnEnemy());
     }

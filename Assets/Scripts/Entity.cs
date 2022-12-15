@@ -29,9 +29,28 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         _spriteRenderer.sprite = info.Sprite;
         _moveSpeed = info.MoveSpeed;
         _basicProjectile = info.BasicProjectileInfo;
-        if(IsPlayer)
+        if (IsPlayer)
+        {
             OnUpdatePlayerHUD?.Invoke(_spriteRenderer.sprite, this);
+            PauseMenu.OnLoad += OnLoad;
+        }
     }
+
+    private void OnDestroy()
+    {
+        PauseMenu.OnLoad -= OnLoad;
+    }
+
+    private void OnLoad(SaveData data)
+    {
+        _hp = data.Health;
+        Vector3 loadPosition = new Vector3(data.Positions[0],
+                                            data.Positions[1],
+                                            data.Positions[2]);
+        this.transform.position = loadPosition;
+        OnUpdatePlayerHUD?.Invoke(_spriteRenderer.sprite, this);
+    }
+
 
     public EntityType Type { get; private set; }
     public bool IsPlayer { get; private set; }
