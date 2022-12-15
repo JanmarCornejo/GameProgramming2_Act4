@@ -7,10 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class EntityManager : Singleton<EntityManager>
 {
-    private List<Entity> _entities = new List<Entity>();
     
-    //Only 1 playable at a time
+    private List<Entity> _entities = new List<Entity>();
     private bool _playerInsideGame = false;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Entity.OnEntityDied += OnEntityDied;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        Entity.OnEntityDied -= OnEntityDied;
+    }
 
     /// <summary>
     /// All entities are created
@@ -27,7 +38,7 @@ public class EntityManager : Singleton<EntityManager>
             var obj = Instantiate(data.Prefab);
             obj.TryGetComponent(out Entity player);
             player.InitializeEntity(data, true);
-            player.OnEntityDied += OnEntityDied;
+            // player.OnEntityDied += OnEntityDied;
             _entities.Add(player);
             return player;
         }
@@ -37,10 +48,11 @@ public class EntityManager : Singleton<EntityManager>
         return entity;
     }
 
-    //TODO Share event with entities
-    private void OnEntityDied()
+    //TODO Share event with entities and load data
+    private void OnEntityDied(Entity entity)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(entity.IsPlayer)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public Entity GetPlayerEntity()

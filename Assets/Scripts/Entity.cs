@@ -8,7 +8,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
 {
     public static event Action<Sprite, Entity> OnUpdatePlayerHUD;
     public static event Action<float> OnCastSkill;
-    public event Action OnEntityDied;
+    public static event Action<Entity> OnEntityDied;
 
     
     /// <summary>
@@ -120,15 +120,16 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 Invoke(nameof(InvokeRestartScene), 2f);
                 return;
         }
-        gameObject.SetActive(false);
+        //TODO add this to entity manager
         SoundManager.Instance.PlaySound(SoundType.EnemyDeath);
-        // Destroy(this.gameObject);
+        OnEntityDied?.Invoke(this);
+        gameObject.SetActive(false);
     }
 
     private void InvokeRestartScene()
     {
-        OnEntityDied?.Invoke();
-        Debug.Log($"Restart Scene");
+        OnEntityDied?.Invoke(this);
+        // Debug.Log($"Restart Scene");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
