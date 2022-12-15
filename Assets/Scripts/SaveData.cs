@@ -8,17 +8,18 @@ using UnityEngine;
 public class SaveData
 {
     public int Health;
+    public int KillCount;
     public float[] Positions;
 
-    public SaveData(Entity entity)
+    public SaveData(Entity entity, int currentKillCount)
     {
         Health = entity.CurrentHealth;
+        KillCount = currentKillCount;
         Positions = new float[3];
         var entityPos = entity.transform.position;
         Positions[0] = entityPos.x;
         Positions[1] = entityPos.y;
         Positions[2] = entityPos.z;
-
     }
 
     public SaveData()

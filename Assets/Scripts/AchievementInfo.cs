@@ -7,6 +7,7 @@ public class AchievementInfo : ScriptableObject
 {
     public string Name;
     [TextArea] public string Description;
+    public bool Obtained;
     public AchievementKind Kind;
     public AchievementType Type;
     public int ConditionQuantity = 0;

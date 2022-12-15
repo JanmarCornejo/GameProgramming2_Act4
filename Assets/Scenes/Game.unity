@@ -2510,9 +2510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Load
-
-'
+  m_text: Load
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c56b943abeb69b24384c19709db1aa5f, type: 2}
   m_sharedMaterial: {fileID: 863626831246046895, guid: c56b943abeb69b24384c19709db1aa5f, type: 2}
@@ -5980,6 +5978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _localPlayerData:
     Health: 5
+    KillCount: 0
     Positions:
     - 0
     - 0

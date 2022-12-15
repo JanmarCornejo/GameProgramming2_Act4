@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Kill 100
   Description: Monster Slayer. Killed 100 enemies
+  Obtained: 0
   Kind: 1
   Type: 1
-  ConditionQuantity: 5
+  ConditionQuantity: 100

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class EntityManager : Singleton<EntityManager>
 {
-    
     private List<Entity> _entities = new List<Entity>();
     private bool _playerInsideGame = false;
 
@@ -63,5 +62,10 @@ public class EntityManager : Singleton<EntityManager>
     public Entity GetPlayerEntity()
     {
         return _entities.FirstOrDefault(e => e.IsPlayer);
+    }
+
+    private void Start()
+    {
+        DataManager.Instance.InvokeLoadData();
     }
 }

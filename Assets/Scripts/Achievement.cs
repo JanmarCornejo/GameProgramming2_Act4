@@ -21,17 +21,19 @@ public class Achievement : IAchievementHandler
     [field:SerializeField]
     public int ConditionQuantity { get; private set; }
 
+    [SerializeField] private AchievementInfo _localInfo;
     public Achievement(AchievementInfo info)
     {
         Name = info.Name;
         Description = info.Description;
+        Obtained = info.Obtained;
         Kind = info.Kind;
         Type = info.Type;
         ConditionQuantity = info.ConditionQuantity;
+        _localInfo = info;
     }
     
-    //TODO update the achievement
-    public void UpdateAchievement(int count)
+    public void CheckAchievement(int count)
     {
         if (Obtained) return;
         
@@ -51,6 +53,7 @@ public class Achievement : IAchievementHandler
     private void InvokeOnDoneAchievement()
     {
         Obtained = true;
+        _localInfo.Obtained = Obtained;
         Debug.Log("Achievement unlocked");
         OnDoneAchievement?.Invoke(this);
     }
@@ -64,7 +67,7 @@ public interface IAchievementHandler
     AchievementKind Kind { get; }
     AchievementType Type { get; }
     int ConditionQuantity { get; }
-    void UpdateAchievement(int count);
+    void CheckAchievement(int count);
 }
 
 public enum AchievementType

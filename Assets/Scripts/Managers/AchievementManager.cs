@@ -13,40 +13,48 @@ public class AchievementManager : Singleton<AchievementManager>
     [SerializeField]
     private List<Achievement> _currentAchievements = new List<Achievement>();
 
+    public int GetCurrentKillCount() => _currentKillsCount;
+
     protected override void Awake()
     {
         base.Awake();
         var infos = Resources.LoadAll<AchievementInfo>(_achievementInfoPath);
-        foreach (var a in infos)
+        foreach (var a in  infos)
         {
-            // _achievements[a.Kind] = a;
             var achievement = new Achievement(a);
             _currentAchievements.Add(achievement);
         }
         Entity.OnEntityDied += OnEntityDied;
+        DataManager.OnLoadData += OnLoadData;
+    }
+
+    private void OnLoadData(SaveData data, bool loadPlayer)
+    {
+        _currentKillsCount = data.KillCount;
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
         Entity.OnEntityDied -= OnEntityDied;
+        DataManager.OnLoadData -= OnLoadData;
     }
 
     private void OnEntityDied(Entity entity)
     {
         if (entity.IsPlayer)
         {
-            //TODO die achievement
             foreach (var a in GetAchievements(AchievementType.Die))
             {
-                a.UpdateAchievement(_currentKillsCount);
+                a.CheckAchievement(_currentKillsCount);
             }
+            //TODO save
             return;
         }
         _currentKillsCount++;
         foreach (var a in GetAchievements(AchievementType.Kill))
         {
-            a.UpdateAchievement(_currentKillsCount);
+            a.CheckAchievement(_currentKillsCount);
         }
     }
 
@@ -56,7 +64,6 @@ public class AchievementManager : Singleton<AchievementManager>
         return achievements;
     }
 
-    //TODO calling on each achievement types
     private void Start()
     {
         //TODO the loading of settings

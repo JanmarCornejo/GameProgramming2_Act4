@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static event Action<SaveData> OnLoad;
-    
     public static bool IsPaused = false;
     public GameObject pauseMenu;
 
@@ -59,15 +57,17 @@ public class PauseMenu : MonoBehaviour
     private void Save()
     {
         var playerEntity = EntityManager.Instance.GetPlayerEntity();
-        SaveData sd = new SaveData(playerEntity);
+        var currentKillCount = AchievementManager.Instance.GetCurrentKillCount();
+        SaveData sd = new SaveData(playerEntity, currentKillCount);
         SaveSystem.Instance.Save(sd);
     }
 
     private void Load()
     {
-        //TODO load implemented
-        var data = SaveSystem.Instance.Load();
-        OnLoad?.Invoke(data);
+        //var data = SaveSystem.Instance.Load();
+        //OnLoad?.Invoke(data);
+        //TODO only at checkpoints can trigger Load function
+        DataManager.Instance.InvokeLoadData(true);
         Resume();
     }
 

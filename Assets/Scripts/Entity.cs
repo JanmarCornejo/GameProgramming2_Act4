@@ -10,7 +10,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     public static event Action<float> OnCastSkill;
     public static event Action<Entity> OnEntityDied;
 
-    
+
     /// <summary>
     /// To initialize entity by values given by EntityInfo
     /// </summary>
@@ -32,25 +32,25 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         if (IsPlayer)
         {
             OnUpdatePlayerHUD?.Invoke(_spriteRenderer.sprite, this);
-            PauseMenu.OnLoad += OnLoad;
+            DataManager.OnLoadData += OnLoadData;
         }
     }
 
     private void OnDestroy()
     {
-        PauseMenu.OnLoad -= OnLoad;
+        DataManager.OnLoadData -= OnLoadData;
     }
 
-    private void OnLoad(SaveData data)
+    private void OnLoadData(SaveData data, bool isLoadPlayer)
     {
+        if (!isLoadPlayer) return;
         _hp = data.Health;
         Vector3 loadPosition = new Vector3(data.Positions[0],
-                                            data.Positions[1],
-                                            data.Positions[2]);
+            data.Positions[1],
+            data.Positions[2]);
         this.transform.position = loadPosition;
         OnUpdatePlayerHUD?.Invoke(_spriteRenderer.sprite, this);
     }
-
 
     public EntityType Type { get; private set; }
     public bool IsPlayer { get; private set; }
@@ -62,10 +62,11 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         get => _hp;
         private set => _hp = Mathf.Clamp(value, 0, MaxHealth);
     }
-    public int MaxHealth { get; protected set;}
-    public int AttackDamage { get; protected set;}
-    public float AttackRange { get; protected set;}
-    public float AttackRate { get; protected set;}
+
+    public int MaxHealth { get; protected set; }
+    public int AttackDamage { get; protected set; }
+    public float AttackRange { get; protected set; }
+    public float AttackRate { get; protected set; }
     private float _nextAttackTime;
     public Skill ActiveSkill { get; protected set; }
     private float _nextActiveSkillTime;
@@ -77,7 +78,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     protected SpriteRenderer _spriteRenderer;
     [SerializeField] protected float _moveSpeed;
     [SerializeField] protected Vector2 _faceDirection;
-    
+
     /// <summary>
     /// All interactions of entity will be calculated here
     /// eg Basic Damage, Skill Damage, etc
@@ -100,8 +101,8 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 CurrentHealth -= agent.ActiveSkill.Damage;
                 break;
         }
-        
-        if(!IsAlive)
+
+        if (!IsAlive)
             OnDie(this);
     }
 
@@ -121,6 +122,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 //Invoke(nameof(InvokeRestartScene), 2f);
                 return;
         }
+
         //TODO add this to entity manager
         SoundManager.Instance.PlaySound(SoundType.EnemyDeath);
         OnEntityDied?.Invoke(this);
@@ -133,7 +135,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         // Debug.Log($"Restart Scene");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    
+
     /// <summary>
     /// To do auto attack
     /// </summary>
@@ -154,6 +156,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                     projTransform.rotation = _indicator.transform.rotation;
                     _nextAttackTime = Time.time + 1 / AttackRate;
                 }
+
                 break;
         }
     }
@@ -172,7 +175,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
             //TODO pop up UI "Skill not yet Ready"
             return;
         }
-        
+
         switch (type)
         {
             case SkillType.AxeNova:
@@ -194,12 +197,13 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 multiShot.InitializeProjectile(ActiveSkill.ProjectileInfo, _faceDirection);
                 break;
         }
+
         var skillCooldown = ActiveSkill.Cooldown;
         OnCastSkill?.Invoke(skillCooldown);
         _nextActiveSkillTime = Time.time + ActiveSkill.Cooldown;
     }
 
-    protected virtual  void Awake()
+    protected virtual void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -213,11 +217,11 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
     protected virtual void Update()
     {
         if (!IsAlive) return;
-        
+
         UpdateEntity();
-        //AutoAttack();
+        AutoAttack();
     }
-    
+
     /// <summary>
     /// Calling update every frame
     /// </summary>
@@ -227,15 +231,16 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
 public enum EntityType
 {
     Unassigned,
+
     //Playable Characters
     Dwarf = 1,
     Wizard,
     Monk,
-    
+
     //Enemy
     BigGoblin = 100,
     FastGoblin,
     NormalGoblin,
-    
+
     SampleTarget = 999,
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
 {
+    public static event Action<SaveData, bool> OnLoadData;
+    
     [SerializeField] private string _entityInfoPath = "EntityInfo";
     private Dictionary<EntityType, EntityInfo> _entityData = new Dictionary<EntityType, EntityInfo>();
     
@@ -21,5 +23,12 @@ public class DataManager : Singleton<DataManager>
     public EntityInfo GetEntityInfo(EntityType type)
     {
        return _entityData[type];
+    }
+
+    public SaveData InvokeLoadData(bool loadPlayer = false)
+    {
+        var data = SaveSystem.Instance.Load();
+        OnLoadData?.Invoke(data, loadPlayer);
+        return data;
     }
 }
