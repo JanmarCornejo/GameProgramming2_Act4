@@ -5842,7 +5842,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initAmountToPool: 2
   _objectPoolPath: PoolBags
-  _poolsList: []
 --- !u!114 &1790663427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5976,13 +5975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bedbf3a607a59d9449fe4d0a6eb88728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localPlayerData:
-    Health: 5
-    KillCount: 0
-    Positions:
-    - 0
-    - 0
-    - 0
 --- !u!114 &1790663430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5995,9 +5987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b6e62eda280548b9ae0519a07c08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentKillsCount: 0
   _achievementInfoPath: AchievementInfo
-  _currentAchievements: []
 --- !u!1 &1857264543
 GameObject:
   m_ObjectHideFlags: 0

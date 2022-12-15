@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SaveSystem : Singleton<SaveSystem>
 {
-    [SerializeField] private SaveData _localPlayerData;
+    private SaveData _localPlayerData;
     private const string SAVE_DATA_KEY = "PlayerData";
 
     [ContextMenu("Save")]
@@ -12,6 +12,12 @@ public class SaveSystem : Singleton<SaveSystem>
         var playerData = JsonConvert.SerializeObject(data);
         Debug.Log(playerData);
         PlayerPrefs.SetString(SAVE_DATA_KEY, playerData);
+    }
+
+    public void Save(int killCount)
+    {
+        SaveData sd = new SaveData(killCount);
+        Save(sd);
     }
 
     [ContextMenu("Load")]

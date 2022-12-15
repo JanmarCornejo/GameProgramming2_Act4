@@ -5,12 +5,9 @@ using System.Linq;
 using UnityEngine;
 
 public class AchievementManager : Singleton<AchievementManager>
-{
-    [SerializeField]
+{ 
     private int _currentKillsCount = 0;
     [SerializeField] private string _achievementInfoPath = "AchievementInfo";
-
-    [SerializeField]
     private List<Achievement> _currentAchievements = new List<Achievement>();
 
     public int GetCurrentKillCount() => _currentKillsCount;
@@ -48,7 +45,7 @@ public class AchievementManager : Singleton<AchievementManager>
             {
                 a.CheckAchievement(_currentKillsCount);
             }
-            //TODO save
+            SaveSystem.Instance.Save(_currentKillsCount);
             return;
         }
         _currentKillsCount++;
@@ -62,10 +59,5 @@ public class AchievementManager : Singleton<AchievementManager>
     {
         var achievements = _currentAchievements.Where(a => a.Type == type);
         return achievements;
-    }
-
-    private void Start()
-    {
-        //TODO the loading of settings
     }
 }

@@ -9,7 +9,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     [SerializeField] private int _initAmountToPool = 2;
     [SerializeField] private string _objectPoolPath = "PoolBags";
     private Dictionary<PoolType, ObjectPoolBag> _pools = new Dictionary<PoolType, ObjectPoolBag>();
-    [SerializeField] private List<ObjectPool> _poolsList = new List<ObjectPool>();
+    private List<ObjectPool> _poolsList = new List<ObjectPool>();
 
     protected override void Awake()
     {

@@ -39,12 +39,6 @@ public class PlayableEntity : Entity
     {
         var dirToFace = _faceDirection.x >= 0 ? 1 : -1;
         _spriteRenderer.flipX = dirToFace == -1;
-
-        //TODO fix direction indicator
-        // if (_spriteRenderer.flipX && _faceDirection == Vector2.zero)
-        // {
-        //     _faceDirection = Vector2.right;
-        // }
     }
     
     public Vector2 GetPointingDirection() => _faceDirection;

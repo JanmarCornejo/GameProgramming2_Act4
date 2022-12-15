@@ -47,7 +47,6 @@ public class EntityManager : Singleton<EntityManager>
         return entity;
     }
 
-    //TODO Share event with entities and load data
     private void OnEntityDied(Entity entity)
     {
         if (entity.IsPlayer)
@@ -66,6 +65,7 @@ public class EntityManager : Singleton<EntityManager>
 
     private void Start()
     {
-        DataManager.Instance.InvokeLoadData();
+        var savedFile = DataManager.Instance.InvokeLoadData();
+        Debug.Log($"Current kill count {savedFile.KillCount}");
     }
 }

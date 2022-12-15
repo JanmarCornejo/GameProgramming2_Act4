@@ -7,21 +7,14 @@ using UnityEngine;
 public class Achievement : IAchievementHandler
 {
     public static event Action<IAchievementHandler> OnDoneAchievement;
-    
-    [field:SerializeField]
     public string Name { get; private set; }
-    [field:SerializeField]
-    public string Description { get; private set; }    
-    [field:SerializeField]
+    public string Description { get; private set; }
     public bool Obtained { get; private set; } = false;
-    [field:SerializeField]
     public AchievementKind Kind { get; private set; }
-    [field:SerializeField]
     public AchievementType Type { get; private set; }
-    [field:SerializeField]
     public int ConditionQuantity { get; private set; }
 
-    [SerializeField] private AchievementInfo _localInfo;
+    private AchievementInfo _localInfo;
     public Achievement(AchievementInfo info)
     {
         Name = info.Name;

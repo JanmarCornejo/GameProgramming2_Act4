@@ -123,7 +123,6 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 return;
         }
 
-        //TODO add this to entity manager
         SoundManager.Instance.PlaySound(SoundType.EnemyDeath);
         OnEntityDied?.Invoke(this);
         gameObject.SetActive(false);
