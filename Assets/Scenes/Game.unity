@@ -196,7 +196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &58650556
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5443,6 +5443,7 @@ GameObject:
   - component: {fileID: 1790663427}
   - component: {fileID: 1790663426}
   - component: {fileID: 1790663429}
+  - component: {fileID: 1790663430}
   - component: {fileID: 1790663425}
   - component: {fileID: 1790663428}
   m_Layer: 0
@@ -5742,6 +5743,20 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+--- !u!114 &1790663430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790663421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b6e62eda280548b9ae0519a07c08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _achievementInfoPath: AchievementInfo
+  _currentAchievements: []
 --- !u!1 &1857264543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6063,7 +6078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2001143888
 RectTransform:
   m_ObjectHideFlags: 0

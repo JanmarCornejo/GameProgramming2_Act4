@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Died with No Enemy Killed
   Description: 
+  Kind: 2
   Type: 2
   ConditionQuantity: 0

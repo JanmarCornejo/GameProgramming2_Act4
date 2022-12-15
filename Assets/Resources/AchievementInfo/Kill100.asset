@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Kill 100
   Description: 
+  Kind: 1
   Type: 1
   ConditionQuantity: 5
