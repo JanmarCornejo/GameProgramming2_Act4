@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kill100
   m_EditorClassIdentifier: 
   Name: Kill 100
-  Description: 
+  Description: Monster Slayer. Killed 100 enemies
   Kind: 1
   Type: 1
   ConditionQuantity: 5

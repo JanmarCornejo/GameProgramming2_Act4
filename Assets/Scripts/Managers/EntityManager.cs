@@ -51,8 +51,13 @@ public class EntityManager : Singleton<EntityManager>
     //TODO Share event with entities and load data
     private void OnEntityDied(Entity entity)
     {
-        if(entity.IsPlayer)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (entity.IsPlayer)
+            Invoke(nameof(DelayRestartScene), 3.5f);
+    }
+
+    private void DelayRestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public Entity GetPlayerEntity()

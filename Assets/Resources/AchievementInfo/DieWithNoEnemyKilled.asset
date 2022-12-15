@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DieWithNoEnemyKilled
   m_EditorClassIdentifier: 
   Name: Died with No Enemy Killed
-  Description: 
+  Description: 'So lucky to not kill anyone '
   Kind: 2
   Type: 2
   ConditionQuantity: 0

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SaveSystem : Singleton<SaveSystem>
 {
-    //[SerializeField] private SaveData _data;
     [SerializeField] private SaveData _localPlayerData;
     private const string SAVE_DATA_KEY = "PlayerData";
 

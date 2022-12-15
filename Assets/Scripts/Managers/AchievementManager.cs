@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class AchievementManager : Singleton<AchievementManager>
 {
+    [SerializeField]
     private int _currentKillsCount = 0;
     [SerializeField] private string _achievementInfoPath = "AchievementInfo";
-    // private Dictionary<AchievementKind, AchievementInfo> _achievements =
-    //     new Dictionary<AchievementKind, AchievementInfo>();
 
     [SerializeField]
     private List<Achievement> _currentAchievements = new List<Achievement>();
@@ -38,15 +37,23 @@ public class AchievementManager : Singleton<AchievementManager>
         if (entity.IsPlayer)
         {
             //TODO die achievement
-            
+            foreach (var a in GetAchievements(AchievementType.Die))
+            {
+                a.UpdateAchievement(_currentKillsCount);
+            }
             return;
         }
         _currentKillsCount++;
-        foreach (var achievement in _currentAchievements.
-                     Where(a => a.Type == AchievementType.Kill))
+        foreach (var a in GetAchievements(AchievementType.Kill))
         {
-            achievement.UpdateAchievement(_currentKillsCount);
+            a.UpdateAchievement(_currentKillsCount);
         }
+    }
+
+    private IEnumerable<Achievement> GetAchievements(AchievementType type)
+    {
+        var achievements = _currentAchievements.Where(a => a.Type == type);
+        return achievements;
     }
 
     //TODO calling on each achievement types

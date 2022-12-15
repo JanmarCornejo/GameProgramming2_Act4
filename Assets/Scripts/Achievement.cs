@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Achievement : IAchievementHandler
 {
-    public Action<IAchievementHandler> OnDoneAchievement { get; private set; }
+    public static event Action<IAchievementHandler> OnDoneAchievement;
     
     [field:SerializeField]
     public string Name { get; private set; }
@@ -31,7 +31,6 @@ public class Achievement : IAchievementHandler
     }
     
     //TODO update the achievement
-
     public void UpdateAchievement(int count)
     {
         if (Obtained) return;
@@ -66,7 +65,6 @@ public interface IAchievementHandler
     AchievementType Type { get; }
     int ConditionQuantity { get; }
     void UpdateAchievement(int count);
-    Action<IAchievementHandler> OnDoneAchievement { get; }
 }
 
 public enum AchievementType

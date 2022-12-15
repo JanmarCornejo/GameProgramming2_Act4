@@ -117,7 +117,8 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
                 col.isTrigger = true;
                 _spriteRenderer.enabled = false;
                 SoundManager.Instance.PlaySound(SoundType.PlayerDeath);
-                Invoke(nameof(InvokeRestartScene), 2f);
+                OnEntityDied?.Invoke(this);
+                //Invoke(nameof(InvokeRestartScene), 2f);
                 return;
         }
         //TODO add this to entity manager
@@ -214,7 +215,7 @@ public abstract class Entity : MonoBehaviour, IHealthDamageHandler, ISkillHandle
         if (!IsAlive) return;
         
         UpdateEntity();
-        AutoAttack();
+        //AutoAttack();
     }
     
     /// <summary>
