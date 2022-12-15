@@ -11,7 +11,9 @@ public class GameOver : MonoBehaviour
     public void MaineMenuOpt()
     {
         SoundManager.Instance.PlaySound(MenuClick);
-        SceneManager.LoadScene("MainMenu");
+
+        Debug.Log("Loading Menu");
+        //SceneManager.LoadScene("MainMenu");
     }
 
     public void Restart()
