@@ -1,12 +1,15 @@
-GAME PROGRAMMING 2 ACTIVITY 4
+GAME PROGRAMMING 2 ACTIVITY 4 AND ACTIVITY 5
 --------------------------------------
+
+GROUP 2
 
 Geoffrey Mendoza
 
 Janmar Cornejo
 
-![](https://github.com/LocalPizzaEmployee/GameProgramming2_Act4/blob/master/Documentations/gp2_act4.gif)
+--------------------------------------
 
+ACTIVITY 4
 
 Implementing OOP Systems
 
@@ -57,5 +60,31 @@ weapon projectile hitting enemy
 Bonus Points:
 
 Create an object pooling system (google this)
+
+---------------------------------------------------------------
+
+ACTIVITY 5
+
+Achievement System
+
+-  Achievements Popup when a certain condition is met
+-  Achievement Progress can be saved
+
+Achievements to Track:
+-  Kill 100 Enemies
+-  Die without killing a Single Enemy
+
+Hint: use event Action
+
+Save System
+
+-  Must Be able to track Achievements
+-  Track Player Location
+-  Track Player HP
+
+(no need to track enemy positions)
+
+Object Pooling System
+--  Ensure any spawning system that uses instantiate instead uses object pooling to save on system memory (projectiles,guns, enemies) make sure your object pooling system is universal and can accomodate enemies, projectiles, vfx
 
 ---------------------------------------------------------------
